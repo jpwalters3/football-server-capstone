@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+namespace FootballServerCapstone.Core.Entities
+{
+    public class History
+    {
+        [Key]
+        public int HistoryId { get; set; }
+
+        public DateTime ContractStartDate { get; set; }
+        public DateTime ContractEndDate { get; set; }
+        public decimal? TransferFee { get; set; }
+
+        //Many to One
+        public int PlayerId { get; set; }
+        public Player Player { get; set; }
+    }
+}
