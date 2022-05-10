@@ -43,7 +43,6 @@ GO
 
 CREATE TABLE Season (
     SeasonId int primary key identity(1,1),
-    NumberOfGames int not null,
     [Year] NVARCHAR(50) not null
 )
 GO
@@ -78,7 +77,6 @@ CREATE TABLE Loan (
     PlayerId int not null,
     LoanDuration int not null,
     LoanStart DATETIME2 not null,
-    IsActive bit not null,
     constraint fk_Loan_ParentClubId
         foreign key (ParentClubId)
         references Club(ClubId),
@@ -128,9 +126,7 @@ GO
 CREATE TABLE History (
     HistoryId int PRIMARY KEY IDENTITY(1,1),
     PlayerId int not null,
-    ContractStart datetime2 not null,
-    ContractEnd datetime2 null,
-    TransferFee DECIMAL (11,2) not null,
+    HistoryEntry text not null,
     constraint fk_History_PlayerId
         foreign key (PlayerId)
         references Player(PlayerId)
