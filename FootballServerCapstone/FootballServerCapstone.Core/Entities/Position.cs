@@ -13,8 +13,5 @@ namespace FootballServerCapstone.Core.Entities
         public int PositionId { get; set; }
 
         public string PositionName { get; set; }
-
-        //One to Many
-        public List<Player> Players { get; set; }
     }
 }
