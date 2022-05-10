@@ -30,6 +30,7 @@ CREATE TABLE Player(
     DateOfBirth datetime2 not null,
     ClubId int not null,
     PositionId int not null,
+    IsActive bit not null,
     IsOnLoan bit not null,
     constraint fk_Player_ClubId
         foreign key (ClubId)
@@ -94,6 +95,7 @@ GO
 CREATE TABLE Performance (
     PlayerId int not null,
     MatchId int not null,
+    PositionId int not null,
     ShotsOnTarget int not null DEFAULT(0),
     Fouls int not null DEFAULT(0),
     Goals int not null DEFAULT(0),
@@ -115,27 +117,23 @@ CREATE TABLE Performance (
         foreign key (MatchId)
         references Match(MatchId)
         ON DELETE cascade,
+    constraint fk_Performance_PositionId
+        foreign key (PositionId)
+        references Position(PositionId)
+        ON DELETE cascade,
     CONSTRAINT PK_Performance PRIMARY KEY (MatchId, PlayerId)
 )
 GO
 
 CREATE TABLE History (
     HistoryId int PRIMARY KEY IDENTITY(1,1),
-    ClubId int not null,
     PlayerId int not null,
-    PositionId int not null,
     ContractStart datetime2 not null,
     ContractEnd datetime2 null,
     TransferFee DECIMAL (11,2) not null,
-    constraint fk_History_ClubId
-        foreign key (ClubId)
-        references Club(ClubId),
     constraint fk_History_PlayerId
         foreign key (PlayerId)
         references Player(PlayerId)
-        ON DELETE cascade,
-    CONSTRAINT fk_History_PositionId
-        FOREIGN KEY (PositionId)
-        REFERENCES Position(PositionId)
+        ON DELETE cascade
 )
 GO
