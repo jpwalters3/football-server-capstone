@@ -1771,11 +1771,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mabel\\training\\10Module\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
       "projectName": "FootballServerCapstone.Core",
-      "projectPath": "C:\\Users\\Mabel\\training\\10Module\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
+      "projectPath": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
       "packagesPath": "C:\\Users\\Mabel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mabel\\training\\10Module\\FootballServerCapstone\\FootballServerCapstone.Core\\obj\\",
+      "outputPath": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mabel\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -14,16 +14,6 @@ namespace FootballServerCapstone.Core.Entities
 
         public int LoanDuration { get; set; }
         public DateTime LoanStart { get; set; }
-        public bool IsActive
-        {
-            get
-            {
-                if (DateTime.Now > (LoanStart.AddMonths(LoanDuration)))
-                    { return false; }
-                else { return true; }
-            }
-            private set { }
-        }
 
         //Many to One
         public int ParentClubId { get; set; }

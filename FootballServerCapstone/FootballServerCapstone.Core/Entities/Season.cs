@@ -12,7 +12,6 @@ namespace FootballServerCapstone.Core.Entities
         [Key]
         public int SeasonId { get; set; }
 
-        public int NumberOfGames { get { return Matches.Count; } private set { } }
         public string Year { get; set; }
 
         //One to Many
