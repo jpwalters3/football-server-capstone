@@ -12,9 +12,7 @@ namespace FootballServerCapstone.Core.Entities
         [Key]
         public int HistoryId { get; set; }
 
-        public DateTime ContractStartDate { get; set; }
-        public DateTime ContractEndDate { get; set; }
-        public decimal? TransferFee { get; set; }
+        public string HistoryEntry{ get; set; }
 
         //Many to One
         public int PlayerId { get; set; }

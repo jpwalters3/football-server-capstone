@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KQ/WHOQBjf26HxgU6X6kNqdvKbl4Lv4lTQyE96QESi3NXTBnqxsUGt8HAajMhSLok6titWu060/KSD7vltBBFw==",
+  "dgSpecHash": "w2Vcll/Tx/R2CAlti9ONSUMBNHEyT9k/jMMX6SsQnvrTfpg+VLIEcciJvXriaI3Qfl5UuD9U7aQev0INE0dENQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mabel\\training\\10Module\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
+  "projectFilePath": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mabel\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Mabel\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
