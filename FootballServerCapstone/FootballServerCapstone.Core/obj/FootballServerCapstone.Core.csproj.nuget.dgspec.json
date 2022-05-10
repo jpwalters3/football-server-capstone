@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj": {}
+    "C:\\Users\\kevin\\Capstone\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj": {
+    "C:\\Users\\kevin\\Capstone\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
+        "projectUniqueName": "C:\\Users\\kevin\\Capstone\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
         "projectName": "FootballServerCapstone.Core",
-        "projectPath": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
-        "packagesPath": "C:\\Users\\Mabel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mabel\\training\\10Module\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\obj\\",
+        "projectPath": "C:\\Users\\kevin\\Capstone\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\FootballServerCapstone.Core.csproj",
+        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kevin\\Capstone\\football-server-capstone\\FootballServerCapstone\\FootballServerCapstone.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mabel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
