@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FootballServerCapstone.Core\FootballServerCapstone.Core.csproj" />
+    <ProjectReference Include="..\FootballServerCapstone.DAL\FootballServerCapstone.DAL.csproj" />
   </ItemGroup>
 
 </Project>
