@@ -18,6 +18,11 @@ namespace FootballServerCapstone.DAL.Repositories
             DbFac = dbfac;
         }
 
+        public ClubRepository(string context)
+        {
+
+        }
+
         public Response<Club> Insert(Club club)
         {
             Response<Club> result = new Response<Club>();

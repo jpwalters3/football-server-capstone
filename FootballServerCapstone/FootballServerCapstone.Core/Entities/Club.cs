@@ -18,8 +18,9 @@ namespace FootballServerCapstone.Core.Entities
         public string City { get; set; }
 
         //One to Many
-        public List<Loan> Loans { get; set; }
-        public List<Match> Matches { get; set; }
-        public List<Player> Players { get; set; }
+        public List<Loan>? Loans { get; set; }
+        public List<Match>? HomeMatches { get; set; }
+        public List<Match>? AwayMatches { get; set; }
+        public List<Player>? Players { get; set; }
     }
 }

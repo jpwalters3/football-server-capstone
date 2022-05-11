@@ -27,5 +27,11 @@ namespace FootballServerCapstone.DAL
                 .Options;
             return new AppDbContext(options);
         }
+
+        public string GetConnectionString()
+        {
+            string environment = _Mode == FactoryMode.TEST ? "Test" : "Prod";
+            return _Config[$"ConnectionStrings:{environment}"];
+        }
     }
 }
