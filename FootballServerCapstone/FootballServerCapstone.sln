@@ -6,10 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballServerCapstone.Core", "FootballServerCapstone.Core\FootballServerCapstone.Core.csproj", "{08E50758-3F1A-4BFF-BC15-B4AFE09E52F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballServerCapstone.API", "FootballServerCapstone.API\FootballServerCapstone.API.csproj", "{222257CD-6CB9-4C54-924D-C61776A26F0A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4415F51B-C03B-41BE-A7D8-6183EB297E13} = {4415F51B-C03B-41BE-A7D8-6183EB297E13}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballServerCapstone.DAL", "FootballServerCapstone.DAL\FootballServerCapstone.DAL.csproj", "{4415F51B-C03B-41BE-A7D8-6183EB297E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballServerCapstone.DAL", "FootballServerCapstone.DAL\FootballServerCapstone.DAL.csproj", "{4415F51B-C03B-41BE-A7D8-6183EB297E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballServerCapstone.DAL.Tests", "FootballServerCapstone.DAL.Tests\FootballServerCapstone.DAL.Tests.csproj", "{34F35B29-7BD4-4660-92CE-3D79B55CFF26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballServerCapstone.DAL.Tests", "FootballServerCapstone.DAL.Tests\FootballServerCapstone.DAL.Tests.csproj", "{34F35B29-7BD4-4660-92CE-3D79B55CFF26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
