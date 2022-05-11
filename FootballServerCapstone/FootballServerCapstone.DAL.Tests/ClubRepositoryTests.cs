@@ -14,11 +14,13 @@ namespace FootballServerCapstone.DAL.Tests
         [SetUp]
         public void Setup()
         {
-            ConfigProvider cp = new ConfigProvider();
+            /*ConfigProvider cp = new ConfigProvider();
             dbf = new DbFactory(cp.Config, FactoryMode.TEST);
-            db = new ClubRepository(dbf);
+            db = new ClubRepository(dbf);*/
 
-            dbf.GetDbContext().Database.ExecuteSqlRaw("SetKnownGoodState");
+            Proceedures.SetGoodState();
+
+            //dbf.GetDbContext().Database.ExecuteSqlRaw("SetKnownGoodState");
         }
 
         [Test]
@@ -45,7 +47,7 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void GetAll_ReturnClubs()
         {
-            Assert.AreEqual(5, db.GetAll().Data.Count);
+            Assert.Fail();
         }
         [Test]
         public void GetLoans_GivenClubId_ReturnLoans()
