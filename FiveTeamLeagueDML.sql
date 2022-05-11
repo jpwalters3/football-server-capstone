@@ -56,3 +56,4 @@ insert into Loan (ParentClubId, LoanClubId, PlayerId, LoanDuration, LoanStart) v
 
 insert into Performance (PlayerId, MatchId, PositionId, ShotsOnTarget, Shots, Fouls, Goals, Assists, Saves, Passes, PassesCompleted, Dribbles, DribblesSucceeded, Tackles, TacklesSucceeded, CleanSheet) values (1, 1, 4, 0, 0, 0, 0, 0, 3, 22, 17, 0, 0, 0, 0, 0);
 insert into Performance (PlayerId, MatchId, PositionId, ShotsOnTarget, Shots, Fouls, Goals, Assists, Saves, Passes, PassesCompleted, Dribbles, DribblesSucceeded, Tackles, TacklesSucceeded, CleanSheet) values (2, 1, 3, 1, 1, 2, 0, 0, 0, 32, 28, 3, 2, 5, 3, 0);
+insert into Performance (PlayerId, MatchId, PositionId, ShotsOnTarget, Shots, Fouls, Goals, Assists, Saves, Passes, PassesCompleted, Dribbles, DribblesSucceeded, Tackles, TacklesSucceeded, CleanSheet) values (3, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
