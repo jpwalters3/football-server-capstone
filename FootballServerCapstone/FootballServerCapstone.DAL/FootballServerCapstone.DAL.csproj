@@ -16,4 +16,8 @@
     <ProjectReference Include="..\FootballServerCapstone.Core\FootballServerCapstone.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ProdSQL\" />
+  </ItemGroup>
+
 </Project>
