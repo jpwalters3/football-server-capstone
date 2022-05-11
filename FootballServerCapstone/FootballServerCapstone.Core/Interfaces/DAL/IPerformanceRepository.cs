@@ -11,7 +11,7 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
     {
         public Response<Performance> Insert(Performance performance);
         public Response Delete(int matchId, int playerId);
-        public Response Update(Loan performance);
+        public Response Update(Performance performance);
 
         public Response<Performance> GetById(int matchId, int playerId);
         public Response<List<Performance>> GetAll();
