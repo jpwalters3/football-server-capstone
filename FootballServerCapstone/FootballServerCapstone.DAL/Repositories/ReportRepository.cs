@@ -25,7 +25,7 @@ namespace FootballServerCapstone.DAL.Repositories
             using (var conn = new SqlConnection(_db.GetConnectionString()))
             {
                 //TODO rename ClubRecords
-                var cmd = new SqlCommand("ClubRecords");
+                var cmd = new SqlCommand("ClubRecords", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conn.Open();
