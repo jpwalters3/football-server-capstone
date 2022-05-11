@@ -35,6 +35,17 @@ namespace FootballServerCapstone.DAL
         {
             builder.Entity<Performance>()
                 .HasKey(p => new { p.MatchId, p.PlayerId });
+            builder.Entity<Loan>()
+                .HasOne(l => l.ParentClub)
+                .WithMany(c => c.Loans);
+            builder.Entity<Loan>()
+                .HasOne(l => l.LoanClub);
+            builder.Entity<Match>()
+                .HasOne(m => m.HomeClub)
+                .WithMany(c => c.HomeMatches);
+            builder.Entity<Match>()
+                .HasOne(m => m.VisitingClub)
+                .WithMany(c => c.AwayMatches);
         }
     }
 }

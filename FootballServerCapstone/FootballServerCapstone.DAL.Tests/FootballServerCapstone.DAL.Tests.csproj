@@ -19,4 +19,8 @@
     <ProjectReference Include="..\FootballServerCapstone.DAL\FootballServerCapstone.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestSQL\" />
+  </ItemGroup>
+
 </Project>
