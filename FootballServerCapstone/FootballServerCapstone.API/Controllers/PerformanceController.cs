@@ -1,5 +1,6 @@
 ﻿using FootballServerCapstone.Core.Interfaces.DAL;
 using Microsoft.AspNetCore.Http;
+using FootballServerCapstone.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FootballServerCapstone.API.Models;
 
@@ -96,6 +97,129 @@ namespace FootballServerCapstone.API.Controllers
                 }
             }
         }
-        
+        [HttpPost]
+        public IActionResult AddPerformance(ViewPerformanceModel performance)
+        {
+            if (ModelState.IsValid)
+            {
+                Performance newPerformance = new Performance()
+                {
+                    MatchId = performance.MatchId,
+                    PlayerId = performance.PlayerId,
+                    Goals = performance.Goals,
+                    Assists = performance.Assists,
+                    Shots = performance.Shots,
+                    ShotsOnTarget = performance.ShotsOnTarget,
+                    Passes = performance.Passes,
+                    PassesCompleted = performance.PassesCompleted,
+                    Dribbles = performance.Dribbles,
+                    DribblesSucceeded = performance.DribblesSucceeded,
+                    Fouls = performance.Fouls,
+                    Saves = performance.Saves,
+                    Tackles = performance.Tackles,
+                    TacklesSucceeded = performance.TacklesSucceeded,
+                    CleanSheet = performance.CleanSheet,
+                    PositionId = performance.PositionId,
+                };
+
+                var result = _performanceRepository.Insert(newPerformance);
+                if (!result.Success)
+                {
+                    return BadRequest(result.Message);
+                }
+                else
+                {
+                    return CreatedAtRoute(nameof(GetPerformance), new { matchId = result.Data.MatchId, playerId = result.Data.PlayerId }, result.Data);
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+        [HttpPut]
+        public IActionResult UpdatePerformance(ViewPerformanceModel performance)
+        {
+            if (ModelState.IsValid && performance.MatchId > 0 && performance.PlayerId > 0)
+            {
+                Performance updatedPerformance = new Performance()
+                {
+                    MatchId = performance.MatchId,
+                    PlayerId = performance.PlayerId,
+                    Goals = performance.Goals,
+                    Assists = performance.Assists,
+                    Shots = performance.Shots,
+                    ShotsOnTarget = performance.ShotsOnTarget,
+                    Passes = performance.Passes,
+                    PassesCompleted = performance.PassesCompleted,
+                    Dribbles = performance.Dribbles,
+                    DribblesSucceeded = performance.DribblesSucceeded,
+                    Fouls = performance.Fouls,
+                    Saves = performance.Saves,
+                    Tackles = performance.Tackles,
+                    TacklesSucceeded = performance.TacklesSucceeded,
+                    CleanSheet = performance.CleanSheet,
+                    PositionId = performance.PositionId,
+                };
+                var findResult = _performanceRepository.GetById(performance.MatchId, performance.PlayerId);
+                if (!findResult.Success)
+                {
+                    return BadRequest(findResult.Message);
+                }
+                else
+                {
+                    if (findResult.Data == null)
+                    {
+                        return NotFound(findResult.Message);
+                    }
+                }
+                var result = _performanceRepository.Update(updatedPerformance);
+                if (!result.Success)
+                {
+                    return BadRequest(result.Message);
+                }
+                else
+                {
+                    return Ok(updatedPerformance);
+                }
+            }
+            else
+            {
+                if (performance.MatchId < 1)
+                {
+                    ModelState.AddModelError("MatchId", "Invalid Match Id");
+                }
+                else if (performance.PlayerId < 1)
+                {
+                    ModelState.AddModelError("PlayerId", "Invalid Player Id");
+                }
+                return BadRequest(ModelState);
+            }
+        }
+        [HttpDelete("{matchId}/{playerId}")]
+        public IActionResult DeletePerformance(int matchId, int playerId)
+        {
+            var findResult = _performanceRepository.GetById(matchId, playerId);
+            if (!findResult.Success)
+            {
+                return BadRequest(findResult.Message);
+            }
+            else
+            {
+                if (findResult.Data == null)
+                {
+                    return NotFound(findResult.Message);
+                }
+            }
+            var result = _performanceRepository.Delete(matchId, playerId);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+            else
+            {
+                return Ok(findResult.Data);
+            }
+        }
     }
 }
