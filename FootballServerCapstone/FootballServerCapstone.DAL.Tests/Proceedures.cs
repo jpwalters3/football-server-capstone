@@ -15,8 +15,9 @@ namespace FootballServerCapstone.DAL.Tests
             using (var conn = new SqlConnection(new DbFactory(new ConfigProvider().Config).GetConnectionString()))
 
             {
-                SqlCommand cmd = new SqlCommand("SetKnowGoodState", conn);
+                SqlCommand cmd = new SqlCommand("SetKnownGoodState", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
