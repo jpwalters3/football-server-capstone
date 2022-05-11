@@ -119,10 +119,9 @@ namespace FootballServerCapstone.DAL.Repositories
 
                     if(result.Data == null)
                     {
-                        result.Success = false;
                         result.Message.Add($"Club #{clubId} not found");
                     }
-                    else { result.Success = true; }
+                    result.Success = true;
                 }
             }
             catch (Exception ex)
@@ -143,10 +142,9 @@ namespace FootballServerCapstone.DAL.Repositories
 
                     if (result.Data.Count == 0)
                     {
-                        result.Success = false;
                         result.Message.Add($"No clubs found");
                     }
-                    else { result.Success = true; }
+                    result.Success = true;
                 }
             }
             catch (Exception ex)
@@ -170,7 +168,6 @@ namespace FootballServerCapstone.DAL.Repositories
 
                     if (result.Data.Count == 0)
                     {
-                        result.Success = false;
                         result.Message.Add($"No loans found");
                     }
                     else { result.Success = true; }

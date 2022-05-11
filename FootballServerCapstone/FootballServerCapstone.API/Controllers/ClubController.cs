@@ -23,6 +23,10 @@ namespace FootballServerCapstone.API.Controllers
 
             if (clubs.Success)
             {
+                if(clubs.Data.Count == 0)
+                {
+                    return NotFound(clubs.Message);
+                }
                 return Ok(clubs.Data);
             }
             else
@@ -39,13 +43,20 @@ namespace FootballServerCapstone.API.Controllers
             {
                 return BadRequest(club.Message);
             }
-            return Ok(new ClubModel()
+            else
             {
-                ClubId = club.Data.ClubId,
-                Name = club.Data.Name,
-                FoundingDate = club.Data.FoundingDate,
-                City = club.Data.City,
-            });
+                if(club.Data == null)
+                {
+                    return NotFound(club.Message);
+                }
+                return Ok(new ClubModel()
+                {
+                    ClubId = club.Data.ClubId,
+                    Name = club.Data.Name,
+                    FoundingDate = club.Data.FoundingDate,
+                    City = club.Data.City,
+                });
+            }    
         }
         [HttpPost]
         public IActionResult AddClub(ViewClubModel club)
@@ -90,8 +101,17 @@ namespace FootballServerCapstone.API.Controllers
                 var findResult = _clubRepository.GetById(club.ClubId);
                 if (!findResult.Success)
                 {
-                    return NotFound(findResult.Message);
+                    return BadRequest(findResult.Message);
+
                 }
+                else
+                {
+                    if(findResult.Data == null) 
+                    {
+                        return NotFound(findResult.Message);
+                    }
+                }
+
                 var result = _clubRepository.Update(updatedClub);
                 if (!result.Success)
                 {
@@ -115,8 +135,17 @@ namespace FootballServerCapstone.API.Controllers
             var findResult = _clubRepository.GetById(clubId);
             if (!findResult.Success)
             {
-                return NotFound(findResult.Message);
+                return BadRequest(findResult.Message);
+
             }
+            else
+            {
+                if (findResult.Data == null)
+                {
+                    return NotFound(findResult.Message);
+                }
+            }
+
             var result = _clubRepository.Delete(findResult.Data.ClubId);
             if (!result.Success)
             {
