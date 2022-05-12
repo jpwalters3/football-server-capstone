@@ -9,14 +9,14 @@ namespace FootballServerCapstone.API.Controllers
     public class PlayerController : Controller
     {
         private readonly IPlayerRepository _playerRepository;
-        private readonly IHistoryRepository _historyRepository;
-        private readonly ILoanRepository _loanRepository;
+        /*private readonly IHistoryRepository _historyRepository;
+        private readonly ILoanRepository _loanRepository;*/
 
-        public PlayerController(IPlayerRepository playerRepository, IHistoryRepository historyRepository, ILoanRepository loanRepository)
+        public PlayerController(IPlayerRepository playerRepository)//, IHistoryRepository historyRepository, ILoanRepository loanRepository)
         {
             _playerRepository = playerRepository;
-            _historyRepository = historyRepository;
-            _loanRepository = loanRepository;
+            /*_historyRepository = historyRepository;
+            _loanRepository = loanRepository;*/
         }
         [HttpGet]
         public IActionResult GetPlayers()

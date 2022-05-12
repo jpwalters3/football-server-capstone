@@ -184,6 +184,11 @@ namespace FootballServerCapstone.DAL.Repositories
                 result.Message.Add(ex.Message);
             }
             return result;
-        } 
+        }
+
+        public Response<List<Player>> GetPlayers(int clubId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

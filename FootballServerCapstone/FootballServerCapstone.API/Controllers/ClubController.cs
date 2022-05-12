@@ -169,7 +169,7 @@ namespace FootballServerCapstone.API.Controllers
             }
             else
             {
-                if (player.Data == null)
+                if (!player.Data.Any())
                 {
                     return NotFound(player.Message);
                 }

@@ -14,6 +14,7 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
         public Response Update(Club club);
 
         public Response<Club> GetById(int clubId);
+        public Response<List<Player>> GetPlayers(int clubId);
         public Response<List<Club>> GetAll();
         public Response<List<Loan>> GetLoans(int clubId);
     }
