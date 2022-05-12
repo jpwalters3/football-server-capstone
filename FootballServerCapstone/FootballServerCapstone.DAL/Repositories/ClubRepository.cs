@@ -26,6 +26,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<Club> Insert(Club club)
         {
             Response<Club> result = new Response<Club>();
+            result.Message = new List<string>();
 
             try
             {
@@ -56,6 +57,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response Delete(int clubId)
         {
             Response result = new Response();
+            result.Message = new List<string>();
 
             try
             {
@@ -85,6 +87,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response Update(Club club)
         {
             Response result = new Response();
+            result.Message = new List<string>();
 
             try
             {
@@ -115,6 +118,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<Club> GetById(int clubId)
         {
             Response<Club> result = new Response<Club>();
+            result.Message = new List<string>();
 
             try
             {
@@ -139,6 +143,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Club>> GetAll()
         {
             Response<List<Club>> result = new Response<List<Club>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -162,6 +168,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Loan>> GetLoans(int clubId)
         {
             Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
