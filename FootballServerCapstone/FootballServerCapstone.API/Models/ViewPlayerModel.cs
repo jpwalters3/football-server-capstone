@@ -6,7 +6,7 @@ namespace FootballServerCapstone.API.Models
     {
         public int PlayerId { get; set; }
         [Required(ErrorMessage = "Player date of birth is required")]
-        //[DateOfBirth]
+        [DateOfBirth]
         public DateTime DateOfBirth { get; set; }
         [Required(ErrorMessage = "Player first name is required")]
         [StringLength(25, ErrorMessage = "Player first name cannot exceed 25 characters")]

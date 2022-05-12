@@ -65,36 +65,60 @@ namespace FootballServerCapstone.API.Controllers
             }
 
         }
-        /*[HttpGet]
+        [HttpGet]
         [Route("/api/[controller]/{id}/loan")]
         public IActionResult GetPlayerLoans(int id)
         {
-            var player = _playerRepository.GetLoans(id);
-            if (!player.Success)
+            var loan = _playerRepository.GetLoans(id);
+            if (!loan.Success)
             {
-                return BadRequest(player.Message);
+                return BadRequest(loan.Message);
             }
             else
             {
-                if (player.Data == null)
+                if (loan.Data == null)
                 {
-                    return NotFound(player.Message);
+                    return NotFound(loan.Message);
                 }
                 return Ok(
-                    player.Data.Select(
-                        player => new PlayerModel()
+                    loan.Data.Select(
+                        loan => new LoanModel()
                         {
-                            PlayerId = player.PlayerId,
-                            FirstName = player.FirstName,
-                            LastName = player.LastName,
-                            DateOfBirth = player.DateOfBirth,
-                            IsActive = player.IsActive,
-                            IsOnLoan = player.IsOnLoan,
-                            ClubId = player.ClubId,
-                            PositionId = player.PositionId
+                            LoanId = loan.LoanId,
+                            LoanDuration = loan.LoanDuration,
+                            LoanStart = loan.LoanStart,
+                            ParentClubId = loan.ParentClubId,
+                            LoanClubId = loan.LoanClubId,
+                            PlayerId = loan.PlayerId
                         }));
             }
 
-        }*/
+        }
+        [HttpGet]
+        [Route("/api/[controller]/{id}/history")]
+        public IActionResult GetPlayerHistory(int id)
+        {
+            var history = _playerRepository.GetHistory(id);
+            if (!history.Success)
+            {
+                return BadRequest(history.Message);
+            }
+            else
+            {
+                if (history.Data == null)
+                {
+                    return NotFound(history.Message);
+                }
+                return Ok(
+                    history.Data.Select(
+                        history => new HistoryModel()
+                        {
+                            HistoryId = history.HistoryId,
+                            HistoryEntry = history.HistoryEntry,
+                            PlayerId = history.PlayerId
+                        }));
+            }
+
+        }
     }
 }
