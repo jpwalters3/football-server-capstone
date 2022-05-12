@@ -13,6 +13,6 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
         public Response Delete(int historyId);
         public Response Update(History history);
 
-        public Response<List<History>> GetById(int historyId);
+        public Response<History> GetById(int historyId);
     }
 }
