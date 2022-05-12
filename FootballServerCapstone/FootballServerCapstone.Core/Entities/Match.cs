@@ -12,6 +12,7 @@ namespace FootballServerCapstone.Core.Entities
         [Key]
         public int MatchId { get; set; }
 
+        public DateTime MatchDate { get; set; }
         public int? NumberOfAttendees { get; set; }
         public int? HomeScore { get; set; }
         public int? AwayScore { get; set; }

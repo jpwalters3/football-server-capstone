@@ -16,6 +16,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<ClubRecord>> getClubRecords()
         {
             Response<List<ClubRecord>> result = new Response<List<ClubRecord>>();
+            result.Message = new List<string>();
 
             using (var conn = new SqlConnection(_db.GetConnectionString()))
             {

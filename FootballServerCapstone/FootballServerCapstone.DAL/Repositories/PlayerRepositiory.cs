@@ -24,6 +24,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Player>> GetAll()
         {
             Response<List<Player>> result = new Response<List<Player>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -48,6 +50,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Player>> GetByClub(int clubId)
         {
             Response<List<Player>> result = new Response<List<Player>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -74,6 +78,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<Player> GetById(int playerId)
         {
             Response<Player> result = new Response<Player>();
+            result.Message = new List<string>();
 
             try
             {
@@ -99,6 +104,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<History>> GetHistory(int playerId)
         {
             Response<List<History>> result = new Response<List<History>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -125,6 +132,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Loan>> GetLoans(int playerId)
         {
             Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
