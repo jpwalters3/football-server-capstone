@@ -51,5 +51,17 @@ namespace FootballServerCapstone.DAL.Tests
         {
             Assert.AreEqual(6, db.GetByClub(2).Data.Count);
         }
+
+        [Test]
+        public void TestGetHistory()
+        {
+            Assert.AreEqual(6, db.GetHistory(3).Data.Count);
+        }
+
+        [Test]
+        public void TestGetLoans()
+        {
+            Assert.AreEqual(2, db.GetLoans(4).Data.Count);
+        }
     }
 }

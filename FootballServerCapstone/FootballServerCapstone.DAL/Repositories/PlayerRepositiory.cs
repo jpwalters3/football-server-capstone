@@ -58,7 +58,7 @@ namespace FootballServerCapstone.DAL.Repositories
 
                     if (result.Data.Count == 0)
                     {
-                        result.Message.Add($"No loans found");
+                        result.Message.Add($"No players found in the club");
                     }
                     else { result.Success = true; }
                 }
@@ -98,12 +98,54 @@ namespace FootballServerCapstone.DAL.Repositories
 
         public Response<List<History>> GetHistory(int playerId)
         {
-            throw new NotImplementedException();
+            Response<List<History>> result = new Response<List<History>>();
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.History
+                                    .Where(h => h.PlayerId == playerId)
+                                    .ToList();
+
+                    if (result.Data.Count == 0)
+                    {
+                        result.Message.Add($"No history found for player");
+                    }
+                    else { result.Success = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<List<Loan>> GetLoans(int playerId)
         {
-            throw new NotImplementedException();
+            Response<List<Loan>> result = new Response<List<Loan>>();
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Loan
+                                    .Where(l => l.PlayerId == playerId)
+                                    .ToList();
+
+                    if (result.Data.Count == 0)
+                    {
+                        result.Message.Add($"No loans found for player");
+                    }
+                    else { result.Success = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<Player> Insert(Player player)
