@@ -18,37 +18,202 @@ namespace FootballServerCapstone.DAL
         }
         public Response Delete(int loanId)
         {
-            throw new NotImplementedException();
+            Response result = new Response();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Loan.Remove(db.Loan.Find(loanId));
+                        db.SaveChanges();
+
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<List<Loan>> GetAll()
         {
-            throw new NotImplementedException();
+            Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Loan.ToList();
+
+                    if (result.Data.Count == 0)
+                    {
+                        result.Message.Add($"No loans found");
+                    }
+                    result.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<Loan> GetById(int loanId)
         {
-            throw new NotImplementedException();
+            Response<Loan> result = new Response<Loan>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Loan.Find(loanId);
+
+                    if (result.Data == null)
+                    {
+                        result.Message.Add($"Loan #{loanId} not found");
+                    }
+                    result.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<List<Loan>> GetByLoanClub(int loanClubId)
         {
-            throw new NotImplementedException();
+            Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Loan
+                        .Where(l => l.LoanClubId == loanClubId).ToList();
+
+                    if (result.Data.Count == 0)
+                    {
+                        result.Message.Add($"No loans for clun #{loanClubId} found");
+                    }
+                    result.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<List<Loan>> GetByParentClub(int parentClubId)
         {
-            throw new NotImplementedException();
+            Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Loan
+                        .Where(l => l.ParentClubId == parentClubId).ToList();
+
+                    if (result.Data.Count == 0)
+                    {
+                        result.Message.Add($"No loans for clun #{parentClubId} found");
+                    }
+                    result.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<Loan> Insert(Loan loan)
         {
-            throw new NotImplementedException();
+            Response<Loan> result = new Response<Loan>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Loan.Add(loan);
+                        db.SaveChanges();
+                        
+                        result.Data = loan;
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response Update(Loan loan)
         {
-            throw new NotImplementedException();
+            Response result = new Response();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Loan.Update(loan);
+                        db.SaveChanges();
+
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
     }
 }

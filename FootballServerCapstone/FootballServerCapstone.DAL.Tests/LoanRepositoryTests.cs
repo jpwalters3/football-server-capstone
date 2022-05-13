@@ -10,5 +10,15 @@ namespace FootballServerCapstone.DAL.Tests
     {
         LoanRepository db;
         DbFactory dbf;
+
+        [SetUp]
+        public void SetUp()
+        {
+            ConfigProvider cp = new ConfigProvider();
+            dbf = new DbFactory(cp.Config, FactoryMode.TEST);
+            db = new LoanRepository(dbf);
+            dbf.GetDbContext().Database.ExecuteSqlRaw("SetKnownGoodState");
+        }
+        
     }
 }
