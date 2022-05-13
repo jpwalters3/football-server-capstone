@@ -10,6 +10,6 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
     public interface IReportRepository
     {
         public Response<List<ClubRecord>> getClubRecords();
-        public Response<PlayerStatistics> getPlayerStatistics(int PlayerId);
+        public Response<PlayerStatistics> getPlayerStatistics(int PlayerId, int SeasonId);
     }
 }
