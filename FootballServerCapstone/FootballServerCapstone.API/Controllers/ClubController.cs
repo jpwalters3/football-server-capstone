@@ -131,33 +131,6 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpDelete("{clubId}")]
-        public IActionResult DeleteClub(int clubId)
-        {
-            var findResult = _clubRepository.GetById(clubId);
-            if (!findResult.Success)
-            {
-                return BadRequest(findResult.Message);
-
-            }
-            else
-            {
-                if (findResult.Data == null)
-                {
-                    return NotFound(findResult.Message);
-                }
-            }
-
-            var result = _clubRepository.Delete(findResult.Data.ClubId);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            else
-            {
-                return Ok(findResult.Data);
-            }
-        }
         [HttpGet]
         [Route("/api/[controller]/{id}/player")]
         public IActionResult GetPlayersInClub(int id)

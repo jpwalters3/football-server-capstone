@@ -13,7 +13,7 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
         public Response Delete(int matchId);
         public Response Update(Match match);
 
-        public Response<Loan> GetById(int matchId);
-        public Response<List<Loan>> GetByClub(int clubId);
+        public Response<Match> GetById(int matchId);
+        public Response<List<Match>> GetByClub(int clubId);
     }
 }
