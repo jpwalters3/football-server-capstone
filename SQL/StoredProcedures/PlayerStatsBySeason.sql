@@ -1,4 +1,4 @@
-CREATE PROCEDURE [PlayerStatsBySeason](@seasonId as int)
+ALTER PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
 AS
 BEGIN
 SELECT m.SeasonId, pl.FirstName + ' ' + pl.LastName [Name],
@@ -10,7 +10,7 @@ sum(Tackles) TotalTackles, sum(TacklesSucceeded) TotalTackledSucceeded,
 sum(cast(CleanSheet as int)) TotalCleanSheet from Performance p
 JOIN Player pl on p.PlayerId = pl.PlayerId
 JOIN [Match] m on p.MatchId = m.MatchId
-GROUP by m.SeasonId, pl.LastName, pl.FirstName
+GROUP by m.SeasonId, pl.FirstName, pl.LastName, pl.PlayerId
 having SeasonId = @seasonId
-order by SeasonId desc
+AND pl.PlayerId = @playerId
 END
