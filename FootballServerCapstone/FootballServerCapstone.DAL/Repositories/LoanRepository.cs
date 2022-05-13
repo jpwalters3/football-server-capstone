@@ -16,11 +16,6 @@ namespace FootballServerCapstone.DAL
         {
             DbFac = dbfac;
         }
-
-        public LoanRepository(string context)
-        {
-
-        }
         public Response Delete(int loanId)
         {
             throw new NotImplementedException();
