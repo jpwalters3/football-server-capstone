@@ -16,12 +16,6 @@ namespace FootballServerCapstone.DAL.Repositories
         {
             DbFac = dbfac;
         }
-
-        public HistoryRepository(string context)
-        {
-
-        }
-
         public Response<History> Insert(History history)
         {
             Response<History> result = new Response<History>();
