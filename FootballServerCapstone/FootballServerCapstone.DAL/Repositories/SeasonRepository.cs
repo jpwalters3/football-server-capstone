@@ -1,54 +1,22 @@
-﻿using System;
+﻿using FootballServerCapstone.Core;
+using FootballServerCapstone.Core.Entities;
+using FootballServerCapstone.Core.Interfaces.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FootballServerCapstone.Core;
-using FootballServerCapstone.Core.Entities;
-using FootballServerCapstone.Core.Interfaces.DAL;
-using Microsoft.EntityFrameworkCore;
 
 namespace FootballServerCapstone.DAL.Repositories
 {
-    public class ClubRepository : IClubRepository
+    public class SeasonRepository : ISeasonRepository
     {
         public DbFactory DbFac { get; set; }
-        public ClubRepository(DbFactory dbfac)
+        public SeasonRepository(DbFactory dbfac)
         {
             DbFac = dbfac;
         }
-        public Response<Club> Insert(Club club)
-        {
-            Response<Club> result = new Response<Club>();
-            result.Message = new List<string>();
-
-            try
-            {
-                using (var db = DbFac.GetDbContext())
-                {
-                    try
-                    {
-                        db.Club.Add(club);
-                        db.SaveChanges();
-
-                        result.Data = club;
-                        result.Success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        result.Success = false;
-                        result.Message.Add(ex.Message);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message.Add(ex.Message);
-            }
-            return result;
-        }
-        public Response Update(Club club)
+        public Response Delete(int seasonId)
         {
             Response result = new Response();
             result.Message = new List<string>();
@@ -59,7 +27,7 @@ namespace FootballServerCapstone.DAL.Repositories
                 {
                     try
                     {
-                        db.Club.Update(club);
+                        db.Season.Remove(db.Season.Find(seasonId));
                         db.SaveChanges();
 
                         result.Success = true;
@@ -78,20 +46,21 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
-        public Response<Club> GetById(int clubId)
+
+        public Response<List<Season>> GetAll()
         {
-            Response<Club> result = new Response<Club>();
+            Response<List<Season>> result = new Response<List<Season>>();
             result.Message = new List<string>();
 
             try
             {
-                using(var db = DbFac.GetDbContext())
+                using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Club.Find(clubId);
+                    result.Data = db.Season.ToList();
 
-                    if(result.Data == null)
+                    if (result.Data.Count == 0)
                     {
-                        result.Message.Add($"Club #{clubId} not found");
+                        result.Message.Add($"No seasons found");
                     }
                     result.Success = true;
                 }
@@ -103,20 +72,21 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
-        public Response<List<Club>> GetAll()
+
+        public Response<Season> GetById(int seasonId)
         {
-            Response<List<Club>> result = new Response<List<Club>>();
+            Response<Season> result = new Response<Season>();
             result.Message = new List<string>();
 
             try
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Club.ToList();
+                    result.Data = db.Season.Find(seasonId);
 
-                    if (result.Data.Count == 0)
+                    if (result.Data == null)
                     {
-                        result.Message.Add($"No clubs found");
+                        result.Message.Add($"Season #{seasonId} not found");
                     }
                     result.Success = true;
                 }
@@ -128,25 +98,86 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
-        public Response<List<Loan>> GetLoans(int clubId)
+
+        public Response<List<Match>> GetMatches(int seasonId)
         {
-            Response<List<Loan>> result = new Response<List<Loan>>();
+            Response<List<Match>> result = new Response<List<Match>>();
             result.Message = new List<string>();
 
             try
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Loan
-                                    .Where(l => (l.ParentClubId == clubId) ||
-                                                (l.LoanClubId == clubId))
-                                    .ToList();
+                    result.Data = db.Match.Where(m => m.SeasonId == seasonId).ToList();
 
                     if (result.Data.Count == 0)
                     {
-                        result.Message.Add($"No loans found");
+                        result.Message.Add($"No matches found");
                     }
-                    else { result.Success = true; }
+                    result.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
+        }
+
+        public Response<Season> Insert(Season season)
+        {
+            Response<Season> result = new Response<Season>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Season.Add(season);
+                        db.SaveChanges();
+
+                        result.Data = season;
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
+        }
+
+        public Response Update(Season season)
+        {
+            Response result = new Response();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Season.Update(season);
+                        db.SaveChanges();
+
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
                 }
             }
             catch (Exception ex)

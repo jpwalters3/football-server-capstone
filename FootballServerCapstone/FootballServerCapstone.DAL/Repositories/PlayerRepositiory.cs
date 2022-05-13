@@ -11,14 +11,35 @@ namespace FootballServerCapstone.DAL.Repositories
         {
             DbFac = dbfac;
         }
-
-        public PlayerRepository(string context)
-        {
-
-        }
         public Response Delete(int playerId)
         {
-            throw new NotImplementedException();
+            Response result = new Response();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Player.Remove(db.Player.Find(playerId));
+                        db.SaveChanges();
+
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response<List<Player>> GetAll()
@@ -159,12 +180,65 @@ namespace FootballServerCapstone.DAL.Repositories
 
         public Response<Player> Insert(Player player)
         {
-            throw new NotImplementedException();
+            Response<Player> result = new Response<Player>();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Player.Add(player);
+                        db.SaveChanges();
+
+                        result.Data = player;
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
 
         public Response Update(Player player)
         {
-            throw new NotImplementedException();
+            Response result = new Response();
+            result.Message = new List<string>();
+
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    try
+                    {
+                        db.Player.Update(player);
+                        db.SaveChanges();
+
+                        result.Success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message.Add(ex.Message);
+            }
+            return result;
         }
     }
 }

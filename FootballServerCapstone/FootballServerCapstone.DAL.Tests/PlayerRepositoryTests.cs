@@ -25,6 +25,16 @@ namespace FootballServerCapstone.DAL.Tests
             IsActive = false,
             IsOnLoan = true
         };
+        Player newPlayer = new Player
+        {
+            ClubId = 2,
+            PositionId = 1,
+            FirstName = "Fernando",
+            LastName = "Torres",
+            DateOfBirth = DateTime.Parse("1984-03-20"),
+            IsActive = false,
+            IsOnLoan = false
+        };
 
         [SetUp]
         public void SetUp()
@@ -62,6 +72,12 @@ namespace FootballServerCapstone.DAL.Tests
         public void TestGetLoans()
         {
             Assert.AreEqual(2, db.GetLoans(4).Data.Count);
+        }
+        [Test]
+        public void TestInsert()
+        {
+            db.Insert(newPlayer);
+            Assert.AreEqual("Fernando", db.GetById(31).Data.FirstName);
         }
     }
 }
