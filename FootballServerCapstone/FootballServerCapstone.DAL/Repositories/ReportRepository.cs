@@ -63,11 +63,26 @@ namespace FootballServerCapstone.DAL.Repositories
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@seasonId", SeasonId);
                 cmd.Parameters.AddWithValue("@playerId", PlayerId);
-                conn.Open();
-
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.Message.Add(ex.Message);
+                }
                 using (var reader = cmd.ExecuteReader())
                 {
-                    reader.Read();
+                    try
+                    {
+                        reader.Read();
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Success = false;
+                        result.Message.Add(ex.Message);
+                    }
                     result.Data.Shots = (int)reader["TotalShots"];
                     result.Data.ShotsOnTarget = (int)reader["TotalShotsOnTarget"];
                     result.Data.Fouls = (int)reader["TotalFouls"];
@@ -84,7 +99,7 @@ namespace FootballServerCapstone.DAL.Repositories
                     
                 }
             }
-
+            result.Success = true;
             return result;
         }
     }
