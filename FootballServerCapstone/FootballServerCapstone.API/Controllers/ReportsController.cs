@@ -28,5 +28,18 @@ namespace FootballServerCapstone.API.Controllers
 
             return Ok(result.Data);
         }
+
+        [HttpGet]
+        [Route("clubs")]
+        public IActionResult getClubs()
+        {
+            var result = _repo.getClubRecords();
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Data);
+        }
     }
 }
