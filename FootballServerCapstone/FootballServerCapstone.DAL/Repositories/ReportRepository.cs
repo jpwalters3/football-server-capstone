@@ -85,7 +85,6 @@ namespace FootballServerCapstone.DAL.Repositories
                             result.Success = false;
                             result.Message.Add("Unable to read data");
                             return result;
-
                         }
                         if (reader.IsDBNull(0)) result.Data[i].Losses = 0;
                         else result.Data[i].Losses = (int)reader[0];
