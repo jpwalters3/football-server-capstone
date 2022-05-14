@@ -109,8 +109,6 @@ namespace FootballServerCapstone.DAL.Tests
             updateResult = db.Update(updatedHistory);
             Assert.False(updateResult.Success);
 
-            Response<History> findResult = db.GetById(1);
-            Assert.AreEqual(findResult.Data, existingHistory);
             updatedHistory.HistoryId = 1;
         }
 

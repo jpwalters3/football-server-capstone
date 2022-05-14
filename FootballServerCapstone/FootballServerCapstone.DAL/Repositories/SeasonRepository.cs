@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootballServerCapstone.DAL.Repositories
 {
@@ -27,6 +28,17 @@ namespace FootballServerCapstone.DAL.Repositories
                 {
                     try
                     {
+                        List<Match> matches = db.Match.Where(m => m.SeasonId == seasonId).ToList();
+                        foreach(Match match in matches)
+                        {
+                            List<Performance> performances = db.Performance.Where(p => p.MatchId == match.MatchId).ToList();
+                            foreach (Performance performance in performances)
+                            {
+                                db.Performance.Remove(performance);
+                            }
+                            db.Match.Remove(match);
+                        }
+
                         db.Season.Remove(db.Season.Find(seasonId));
                         db.SaveChanges();
 
