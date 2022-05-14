@@ -29,5 +29,11 @@ namespace FootballServerCapstone.DAL.Tests
         {
             Assert.AreEqual(_repo.getPlayerStatistics(6, 2).Data.Shots, 6);
         }
+
+        [Test]
+        public void CheckTeamRecords()
+        {
+            Assert.AreEqual(11, _repo.getClubRecords().Data[0].Losses);
+        }
     }
 }
