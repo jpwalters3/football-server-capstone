@@ -50,7 +50,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.IsNull(findResult.Data);
         }
         [Test]
-        public void Delete_GivenNonexistentSeasonId_DeleteSeason()
+        public void Delete_GivenNonexistentSeasonId_DoesNotDelete()
         {
             Response deleteResult = db.Delete(1000);
 
@@ -69,7 +69,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.AreEqual(findResult.Data, updatedSeason);
         }
         [Test]
-        public void Update_GivenSeasonWithNonexistantId_UpdateSeaon()
+        public void Update_GivenSeasonWithNonexistentId_DoesNotUpdate()
         {
             Season updatedSeason = new Season { SeasonId = 6, Year = "2019-2020" };
 
@@ -88,9 +88,8 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.AreEqual(expected, actual.Data);
         }
         [Test]
-        public void GetById_GivenNonexistantSeasonId_ReturnSeason()
+        public void GetById_GivenNonexistentSeasonId_ReturnSeason()
         {
-            Season expected = new Season { SeasonId = 1000, Year = "2017-2018" };
             Response<Season> actual = db.GetById(1000);
 
             Assert.True(actual.Success);
@@ -108,7 +107,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.AreEqual(actual.Data.Count, expectedMatches);
         }
         [Test]
-        public void GetMatches_GivenNonexistantSeasonId_ReturnMatches()
+        public void GetMatches_GivenNonexistentSeasonId_ReturnMatches()
         {
             int expectedMatches = 0;
 
