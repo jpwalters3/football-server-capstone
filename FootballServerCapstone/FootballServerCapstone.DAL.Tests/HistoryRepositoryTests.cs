@@ -79,7 +79,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.IsNull(findResult.Data);
         }
         [Test]
-        public void Delete_GivenNonexistantHistoryId_DoesNotDelete()
+        public void Delete_GivenNonexistentHistoryId_DoesNotDelete()
         {
             Response deleteResult = new Response();
 
@@ -101,7 +101,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.AreEqual(findResult.Data, updatedHistory);
         }
         [Test]
-        public void Update_GivenEntryWithNonexistantHistoryId_DoesNotUpdate()
+        public void Update_GivenEntryWithNonexistentHistoryId_DoesNotUpdate()
         {
             Response updateResult = new Response();
             updatedHistory.HistoryId = 1000;
@@ -109,8 +109,6 @@ namespace FootballServerCapstone.DAL.Tests
             updateResult = db.Update(updatedHistory);
             Assert.False(updateResult.Success);
 
-            Response<History> findResult = db.GetById(1);
-            Assert.AreEqual(findResult.Data, existingHistory);
             updatedHistory.HistoryId = 1;
         }
 
@@ -120,7 +118,7 @@ namespace FootballServerCapstone.DAL.Tests
             Assert.AreEqual(existingHistory, db.GetById(1).Data);
         }
         [Test]
-        public void GetById_GivenNonexistantHistoryId_ReturnNull()
+        public void GetById_GivenNonexistentHistoryId_ReturnNull()
         {
             Response<History> result = db.GetById(1000);
 
