@@ -20,8 +20,6 @@ namespace FootballServerCapstone.DAL.Repositories
 
             using (var conn = new SqlConnection(_db.GetConnectionString()))
             {
-
-
                 //Set up SQL commands
                 SqlCommand getWins = new SqlCommand("ClubWins", conn);
                 getWins.CommandType = CommandType.StoredProcedure;
@@ -101,9 +99,12 @@ namespace FootballServerCapstone.DAL.Repositories
                         if (reader.IsDBNull(0)) result.Data[i].Draws = 0;
                         else result.Data[i].Draws = (int)reader[0];
                     }
+
+                    result.Data[i].Points = result.Data[i].Wins * 3 + result.Data[i].Draws;
                 }
             }
 
+            result.Success = true;
             return result;
         }
 
