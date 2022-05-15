@@ -43,7 +43,7 @@ builder.Services.AddTransient<IReportRepository>(r => new ReportRepository(new D
 builder.Services.AddTransient<IPlayerRepository, PlayerRepository>(r => new PlayerRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IHistoryRepository, HistoryRepository>(r => new HistoryRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<ILoanRepository, LoanRepository>(r => new LoanRepository(new DbFactory(new ConfigProvider().Config)));
-//builder.Services.AddTransient<IMatchRepository, MatchRepository>();
+builder.Services.AddTransient<IMatchRepository>(r => new MatchRepository(new DbFactory(new ConfigProvider().Config)));
 //builder.Services.AddTransient<IPerformanceRepository, PerformanceRepository>();
 
 var app = builder.Build();

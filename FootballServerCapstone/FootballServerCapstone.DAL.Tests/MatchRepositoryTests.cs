@@ -82,5 +82,11 @@ namespace FootballServerCapstone.DAL.Tests
         {
             Assert.IsTrue(true);
         }
+
+        [Test]
+        public void TestGetAll()
+        {
+            Assert.AreEqual(db.GetAll().Data.Count, 50);
+        }
     }
 }
