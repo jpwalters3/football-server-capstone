@@ -19,6 +19,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response Delete(int matchId, int playerId)
         {
             Response result = new Response();
+            result.Message = new List<string>();
 
             try
             {
@@ -56,6 +57,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<Performance> GetById(int matchId, int playerId)
         {
             Response<Performance> result = new Response<Performance>();
+            result.Message = new List<string>();
+
             try
             {
                 using(var db = DbFac.GetDbContext())
@@ -81,6 +84,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Performance>> GetByMatch(int matchId)
         {
             Response<List<Performance>> result = new Response<List<Performance>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -105,6 +110,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Performance>> GetByPlayer(int playerId)
         {
             Response<List<Performance>> result = new Response<List<Performance>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -134,6 +141,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<Performance> Insert(Performance performance)
         {
             Response<Performance> result = new Response<Performance>();
+            result.Message = new List<string>();
 
             try
             {
@@ -165,6 +173,7 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response Update(Performance performance)
         {
             Response result = new Response();
+            result.Message = new List<string>();
 
             try
             {

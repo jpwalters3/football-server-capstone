@@ -16,5 +16,16 @@ namespace FootballServerCapstone.Core.Entities
 
         //One to Many
         public List<Match> Matches { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Season season &&
+                SeasonId == season.SeasonId &&
+                Year == season.Year;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(SeasonId, Year);
+        }
     }
 }

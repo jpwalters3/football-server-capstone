@@ -17,15 +17,10 @@ namespace FootballServerCapstone.DAL.Repositories
         {
             DbFac = dbfac;
         }
-
-        public ClubRepository(string context)
-        {
-
-        }
-
         public Response<Club> Insert(Club club)
         {
             Response<Club> result = new Response<Club>();
+            result.Message = new List<string>();
 
             try
             {
@@ -53,38 +48,10 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
-        public Response Delete(int clubId)
-        {
-            Response result = new Response();
-
-            try
-            {
-                using (var db = DbFac.GetDbContext())
-                {
-                    try
-                    {
-                        db.Club.Remove(db.Club.Find(clubId));
-                        db.SaveChanges();
-
-                        result.Success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        result.Success = false;
-                        result.Message.Add(ex.Message);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message.Add(ex.Message);
-            }
-            return result;
-        }
         public Response Update(Club club)
         {
             Response result = new Response();
+            result.Message = new List<string>();
 
             try
             {
@@ -111,10 +78,10 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
-
         public Response<Club> GetById(int clubId)
         {
             Response<Club> result = new Response<Club>();
+            result.Message = new List<string>();
 
             try
             {
@@ -139,6 +106,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Club>> GetAll()
         {
             Response<List<Club>> result = new Response<List<Club>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -162,6 +131,8 @@ namespace FootballServerCapstone.DAL.Repositories
         public Response<List<Loan>> GetLoans(int clubId)
         {
             Response<List<Loan>> result = new Response<List<Loan>>();
+            result.Message = new List<string>();
+
             try
             {
                 using (var db = DbFac.GetDbContext())
@@ -184,6 +155,6 @@ namespace FootballServerCapstone.DAL.Repositories
                 result.Message.Add(ex.Message);
             }
             return result;
-        } 
+        }
     }
 }

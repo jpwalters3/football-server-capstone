@@ -55,6 +55,7 @@ CREATE TABLE Match (
     NumberOfAttendees int null,
     HomeScore int null,    
     AwayScore int null,
+    MatchDate DateTime2 not null,
     constraint fk_Match_HomeClubId
         foreign key (HomeClubId)
         references Club(ClubId),

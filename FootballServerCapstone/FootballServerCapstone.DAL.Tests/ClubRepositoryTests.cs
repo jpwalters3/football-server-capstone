@@ -3,6 +3,7 @@ using FootballServerCapstone.Core;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace FootballServerCapstone.DAL.Tests
 {
@@ -10,6 +11,20 @@ namespace FootballServerCapstone.DAL.Tests
     {
         ClubRepository db;
         DbFactory dbf;
+
+        Club newClub = new Club
+        {
+            Name = "Test Club",
+            FoundingDate = DateTime.Parse("2000-08-31"),
+            City = "Test City",
+        };
+        Club updatedClub = new Club
+        {
+            ClubId = 2,
+            Name = "Test Club",
+            FoundingDate = DateTime.Parse("2000-08-31"),
+            City = "Test City",
+        };
 
         [SetUp]
         public void Setup()
@@ -26,23 +41,20 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void Insert_GivenClub_InsertClub()
         {
-            Assert.Fail();
-        }
-        [Test]
-        public void Delete_GivenClubId_DeleteClub()
-        {
-            Assert.Fail();
+            db.Insert(newClub);
+            Assert.AreEqual("Test City", db.GetById(6).Data.City);
         }
         [Test]
         public void Update_GivenClub_UpdateClub()
         {
-            Assert.Fail();
+            db.Update(updatedClub);
+            Assert.AreEqual("Test City", db.GetById(2).Data.City);
         }
 
         [Test]
         public void GetById_GivenClubId_ReturnClub()
         {
-            Assert.Fail();
+            Assert.AreEqual("Sakassou", db.GetById(1).Data.City);
         }
         [Test]
         public void GetAll_ReturnClubs()
@@ -52,7 +64,7 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void GetLoans_GivenClubId_ReturnLoans()
         {
-            Assert.Fail();
+            Assert.AreEqual(5, db.GetLoans(4).Data.Count);
         }
     }
 }

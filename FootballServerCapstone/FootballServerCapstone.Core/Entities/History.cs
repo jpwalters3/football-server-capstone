@@ -17,5 +17,17 @@ namespace FootballServerCapstone.Core.Entities
         //Many to One
         public int PlayerId { get; set; }
         public Player Player { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is History history &&
+                HistoryId == history.HistoryId &&
+                HistoryEntry == history.HistoryEntry &&
+                PlayerId == history.PlayerId;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(HistoryId, HistoryEntry, PlayerId);
+        }
     }
 }

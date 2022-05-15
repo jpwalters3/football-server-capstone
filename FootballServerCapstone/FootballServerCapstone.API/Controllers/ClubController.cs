@@ -11,10 +11,12 @@ namespace FootballServerCapstone.API.Controllers
     public class ClubController : ControllerBase
     {
         private readonly IClubRepository _clubRepository;
+        private readonly IPlayerRepository _playerRepository;
 
-        public ClubController(IClubRepository clubRepository)
+        public ClubController(IClubRepository clubRepository, IPlayerRepository playerRepository)
         {
             _clubRepository = clubRepository;
+            _playerRepository = playerRepository;
         }
         [HttpGet]
         public IActionResult GetClubs()
@@ -129,34 +131,37 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpDelete("{clubId}")]
-        public IActionResult DeleteClub(int clubId)
+        [HttpGet]
+        [Route("/api/[controller]/{id}/player")]
+        public IActionResult GetPlayersInClub(int id)
         {
-            var findResult = _clubRepository.GetById(clubId);
-            if (!findResult.Success)
+            var player = _playerRepository.GetByClub(id);
+            if (!player.Success)
             {
-                return BadRequest(findResult.Message);
-
+                return BadRequest(player.Message);
             }
             else
             {
-                if (findResult.Data == null)
+                if (!player.Data.Any())
                 {
-                    return NotFound(findResult.Message);
+                    return NotFound(player.Message);
                 }
+                return Ok(
+                    player.Data.Select(
+                        player => new PlayerModel()
+                        {
+                            PlayerId = player.PlayerId,
+                            FirstName = player.FirstName,
+                            LastName = player.LastName,
+                            DateOfBirth = player.DateOfBirth,
+                            IsActive = player.IsActive,
+                            IsOnLoan = player.IsOnLoan,
+                            ClubId = player.ClubId,
+                            PositionId = player.PositionId
+                        }));
             }
 
-            var result = _clubRepository.Delete(findResult.Data.ClubId);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            else
-            {
-                return Ok(findResult.Data);
-            }
         }
-
     }
 }
 

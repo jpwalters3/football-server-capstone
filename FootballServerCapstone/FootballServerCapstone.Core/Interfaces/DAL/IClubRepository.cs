@@ -10,7 +10,6 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
     public interface IClubRepository
     {
         public Response<Club> Insert(Club club);
-        public Response Delete(int clubId);
         public Response Update(Club club);
 
         public Response<Club> GetById(int clubId);

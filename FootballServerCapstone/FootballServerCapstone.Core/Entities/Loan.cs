@@ -25,5 +25,18 @@ namespace FootballServerCapstone.Core.Entities
         public int PlayerId { get; set; }
         public Player Player { get; set; }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Loan loan &&
+                LoanId == loan.LoanId &&
+                LoanDuration == loan.LoanDuration &&
+                ParentClubId == loan.ParentClubId &&
+                LoanClubId == loan.LoanClubId &&
+                PlayerId == loan.PlayerId;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(LoanId, LoanDuration, ParentClubId, LoanClubId, PlayerId);
+        }
     }
 }
