@@ -105,7 +105,7 @@ namespace FootballServerCapstone.API.Controllers
             }
             else
             {
-                if (history.Data == null)
+                if (history.Data.Count == 0)
                 {
                     return NotFound(history.Message);
                 }
