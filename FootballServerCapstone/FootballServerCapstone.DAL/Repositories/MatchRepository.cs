@@ -22,6 +22,10 @@ namespace FootballServerCapstone.DAL.Repositories
                 {
                     try
                     {
+                        foreach (Performance p in db.Performance.Where(p => p.MatchId == matchId).ToList())
+                        {
+                            db.Performance.Remove(p);
+                        }
                         db.Match.Remove(db.Match.Find(matchId));
                         db.SaveChanges();
 
