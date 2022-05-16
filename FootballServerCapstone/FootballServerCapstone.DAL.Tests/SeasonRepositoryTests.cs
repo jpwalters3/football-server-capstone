@@ -105,6 +105,7 @@ namespace FootballServerCapstone.DAL.Tests
 
             Assert.True(actual.Success);
             Assert.AreEqual(actual.Data.Count, expectedMatches);
+            Assert.AreEqual(actual.Data[0].HomeClub.Name, "Bush dog");
         }
         [Test]
         public void GetMatches_GivenNonexistentSeasonId_ReturnMatches()
