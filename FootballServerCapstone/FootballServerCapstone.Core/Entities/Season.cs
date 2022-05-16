@@ -13,6 +13,7 @@ namespace FootballServerCapstone.Core.Entities
         public int SeasonId { get; set; }
 
         public string Year { get; set; }
+        public bool IsActive { get; set; }
 
         //One to Many
         public List<Match> Matches { get; set; }
@@ -21,11 +22,12 @@ namespace FootballServerCapstone.Core.Entities
         {
             return obj is Season season &&
                 SeasonId == season.SeasonId &&
-                Year == season.Year;
+                Year == season.Year &&
+                IsActive == season.IsActive;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(SeasonId, Year);
+            return HashCode.Combine(SeasonId, Year, IsActive);
         }
     }
 }

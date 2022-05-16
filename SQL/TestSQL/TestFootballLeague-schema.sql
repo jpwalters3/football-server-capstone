@@ -43,7 +43,8 @@ GO
 
 CREATE TABLE Season (
     SeasonId int primary key identity(1,1),
-    [Year] NVARCHAR(50) not null
+    [Year] NVARCHAR(50) not null,
+    IsActive bit not null
 )
 GO
 
@@ -65,7 +66,6 @@ CREATE TABLE Match (
     constraint fk_Match_SeasonId
         foreign key (SeasonId)
         references Season(SeasonId)
-        ON DELETE cascade
 )
 GO
 
@@ -87,7 +87,6 @@ CREATE TABLE Loan (
     constraint fk_Loan_PlayerId
         foreign key (PlayerId)
         references Player(PlayerId)
-        ON DELETE cascade
 )
 GO
 
@@ -110,16 +109,13 @@ CREATE TABLE Performance (
     CleanSheet bit not null DEFAULT(0),
     constraint fk_Performance_PlayerId
         foreign key (PlayerId)
-        references Player(PlayerId)
-        ON DELETE cascade,
+        references Player(PlayerId),
     constraint fk_Performance_MatchId
         foreign key (MatchId)
-        references Match(MatchId)
-        ON DELETE cascade,
+        references Match(MatchId),
     constraint fk_Performance_PositionId
         foreign key (PositionId)
-        references Position(PositionId)
-        ON DELETE cascade,
+        references Position(PositionId),
     CONSTRAINT PK_Performance PRIMARY KEY (MatchId, PlayerId)
 )
 GO
@@ -131,6 +127,5 @@ CREATE TABLE History (
     constraint fk_History_PlayerId
         foreign key (PlayerId)
         references Player(PlayerId)
-        ON DELETE cascade
 )
 GO
