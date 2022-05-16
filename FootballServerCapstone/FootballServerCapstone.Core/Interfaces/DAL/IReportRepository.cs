@@ -11,5 +11,8 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
     {
         public Response<List<ClubRecord>> getClubRecords();
         public Response<PlayerStatistics> getPlayerStatistics(int PlayerId, int SeasonId);
+        public Response<List<MostCleanSheets>> getMostCleanSheets(int SeasonId);
+        public Response<List<TopAssists>> getTopAssists(int SeasonId);
+        public Response<List<TopScorer>> getTopScorer(int SeasonId);
     }
 }

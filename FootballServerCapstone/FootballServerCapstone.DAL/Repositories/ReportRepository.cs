@@ -108,6 +108,48 @@ namespace FootballServerCapstone.DAL.Repositories
             return result;
         }
 
+        public Response<List<MostCleanSheets>> getMostCleanSheets(int SeasonId)
+        {
+            Response<List<MostCleanSheets>> result = new();
+            result.Message = new List<string>();
+
+            using (var conn = new SqlConnection(_db.GetConnectionString()))
+            {
+                var cmd = new SqlCommand("MostCleanSheetsForSeason", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@seasonId", SeasonId);
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.Message.Add(ex.Message);
+                    return result;
+                }
+
+                result.Data = new List<MostCleanSheets>();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        MostCleanSheets record = new MostCleanSheets();
+                        record.SeasonId = (int)reader["SeasonId"];
+                        record.ClubName =  reader["ClubName"].ToString();
+                        record.PlayerName = reader["PlayerName"].ToString();
+                        record.TotalCleanSheets = (int)reader["TotalCleanSheet"];
+
+                        result.Data.Add(record);
+                    };
+                }
+            }
+            result.Success = true;
+            return result;
+        }
+
         public Response<PlayerStatistics> getPlayerStatistics(int PlayerId, int SeasonId)
         {
             Response<PlayerStatistics> result = new Response<PlayerStatistics>();
@@ -154,6 +196,90 @@ namespace FootballServerCapstone.DAL.Repositories
                     {
                         result.Data = new PlayerStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                     }
+                }
+            }
+            result.Success = true;
+            return result;
+        }
+
+        public Response<List<TopAssists>> getTopAssists(int SeasonId)
+        {
+            Response<List<TopAssists>> result = new();
+            result.Message = new List<string>();
+
+            using (var conn = new SqlConnection(_db.GetConnectionString()))
+            {
+                var cmd = new SqlCommand("TopAssistsForSeason", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@seasonId", SeasonId);
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.Message.Add(ex.Message);
+                    return result;
+                }
+
+                result.Data = new List<TopAssists>();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        TopAssists record = new TopAssists();
+                        record.SeasonId = (int)reader["SeasonId"];
+                        record.ClubName = reader["ClubName"].ToString();
+                        record.PlayerName = reader["PlayerName"].ToString();
+                        record.TotalAssists = (int)reader["TotalAssists"];
+
+                        result.Data.Add(record);
+                    };
+                }
+            }
+            result.Success = true;
+            return result;
+        }
+
+        public Response<List<TopScorer>> getTopScorer(int SeasonId)
+        {
+            Response<List<TopScorer>> result = new();
+            result.Message = new List<string>();
+
+            using (var conn = new SqlConnection(_db.GetConnectionString()))
+            {
+                var cmd = new SqlCommand("TopScorerForSeason", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@seasonId", SeasonId);
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.Message.Add(ex.Message);
+                    return result;
+                }
+
+                result.Data = new List<TopScorer>();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        TopScorer record = new TopScorer();
+                        record.SeasonId = (int)reader["SeasonId"];
+                        record.ClubName = reader["ClubName"].ToString();
+                        record.PlayerName = reader["PlayerName"].ToString();
+                        record.TotalGoals = (int)reader["TotalGoals"];
+
+                        result.Data.Add(record);
+                    };
                 }
             }
             result.Success = true;

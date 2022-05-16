@@ -1,4 +1,4 @@
-ALTER PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
+Create PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
 AS
 BEGIN
 SELECT m.SeasonId, pl.FirstName + ' ' + pl.LastName [Name],

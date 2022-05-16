@@ -41,5 +41,44 @@ namespace FootballServerCapstone.API.Controllers
 
             return Ok(result.Data);
         }
+
+        [HttpGet]
+        [Route("MostCleanSheets/{seasonId}")]
+        public IActionResult getMostCleanSheets(int seasonId)
+        {
+            var result = _repo.getMostCleanSheets(seasonId);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet]
+        [Route("TopAssists/{seasonId}")]
+        public IActionResult getTopAssists(int seasonId)
+        {
+            var result = _repo.getTopAssists(seasonId);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet]
+        [Route("TopScorer/{seasonId}")]
+        public IActionResult getTopScorer(int seasonId)
+        {
+            var result = _repo.getTopScorer(seasonId);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Data);
+        }
     }
 }

@@ -27,13 +27,34 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void CheckPlayerData()
         {
-            Assert.AreEqual(_repo.getPlayerStatistics(6, 2).Data.Shots, 6);
+            Assert.AreEqual(1,_repo.getPlayerStatistics(6, 2).Data.Shots);
         }
 
         [Test]
         public void CheckTeamRecords()
         {
             Assert.AreEqual(11, _repo.getClubRecords().Data[0].Losses);
+        }
+
+        [Test]
+        public void TestMostCleanSheets()
+        {
+            Assert.AreEqual(11, _repo.getMostCleanSheets(1).Data.Count);
+            Assert.AreEqual(2, _repo.getMostCleanSheets(1).Data[0].TotalCleanSheets);
+        }
+
+        [Test]
+        public void TestTopAssists()
+        {
+            Assert.AreEqual(11, _repo.getTopAssists(1).Data.Count);
+            Assert.AreEqual(10, _repo.getTopAssists(1).Data[0].TotalAssists);
+        }
+
+        [Test]
+        public void TestTopScorer()
+        {
+            Assert.AreEqual(10, _repo.getTopScorer(1).Data.Count);
+            Assert.AreEqual(13, _repo.getTopScorer(1).Data[0].TotalGoals);
         }
     }
 }
