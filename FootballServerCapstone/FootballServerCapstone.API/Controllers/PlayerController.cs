@@ -1,4 +1,5 @@
 ﻿using FootballServerCapstone.API.Models;
+using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
 using Microsoft.AspNetCore.Mvc;
 
@@ -119,6 +120,76 @@ namespace FootballServerCapstone.API.Controllers
                         }));
             }
 
+        }
+        [HttpPut]
+        public IActionResult UpdatePlayer(ViewPlayerModel player)
+        {
+            if(ModelState.IsValid && player.PlayerId > 0)
+            {
+                Player updatedPlayer = new Player
+                {
+                    PlayerId = player.PlayerId,
+                    FirstName = player.FirstName,
+                    LastName = player.LastName,
+                    DateOfBirth = player.DateOfBirth,
+                    IsActive = player.IsActive,
+                    IsOnLoan = player.IsOnLoan,
+                    ClubId = player.ClubId,
+                    PositionId = player.PositionId
+                };
+                var findResult = _playerRepository.GetById(player.PlayerId);
+                if (!findResult.Success)
+                {
+                    return BadRequest(findResult.Message);
+                }
+                else
+                {
+                    if (findResult.Data == null)
+                    {
+                        return NotFound(findResult.Message);
+                    }
+                }
+                var updateResult = _playerRepository.Update(updatedPlayer);
+                if (!updateResult.Success)
+                {
+                    return BadRequest(updateResult.Message);
+                }
+                else
+                {
+                    return Ok(updateResult.Message);
+                }
+            }
+            else
+            {
+                if (player.PlayerId < 1)
+                    ModelState.AddModelError("PlayerId", "Invalid Player Id");
+                return BadRequest(ModelState);
+            }
+        }
+        [HttpDelete("{playerId}")]
+        public IActionResult DeletePlayer(int playerId)
+        {
+            var findResult = _playerRepository.GetById(playerId);
+            if (!findResult.Success)
+            {
+                return BadRequest(findResult.Message);
+            }
+            else
+            {
+                if (findResult.Data == null)
+                {
+                    return NotFound(findResult.Message);
+                }
+            }
+            var deleteResult = _playerRepository.Delete(playerId);
+            if (!deleteResult.Success)
+            {
+                return BadRequest(deleteResult.Message);
+            }
+            else
+            {
+                return Ok(deleteResult.Message);
+            }
         }
     }
 }

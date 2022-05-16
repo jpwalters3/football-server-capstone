@@ -110,7 +110,7 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
         [HttpPut]
-        public IActionResult UpdateClub(ViewMatchModel match)
+        public IActionResult UpdateMatch(ViewMatchModel match)
         {
             if (ModelState.IsValid && match.MatchId > 0)
             {
