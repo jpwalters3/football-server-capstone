@@ -17,6 +17,19 @@ namespace FootballServerCapstone.API.Controllers
             _matchRepository = matchRepository;
         }
         [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = _matchRepository.GetAll();
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+            else
+            {
+                return Ok(result.Data);
+            }
+        }
+        [HttpGet]
         [Route("api/[controller]/{id}", Name = "GetMatch")]
         public IActionResult GetMatch(int id)
         {
@@ -48,8 +61,10 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
         [HttpGet]
-        [Route("api/[controller]/club/{clubId}/{seasonId}", Name = "GetMatchesByClubId")]
-        public IActionResult GetMatchesByClub(int clubId, int seasonId)
+
+        [Route("club/{id}", Name = "GetMatchesByClub")]
+        public IActionResult GetMatchesByClub(int id)
+
         {
             var matches = _matchRepository.GetByClub(clubId, seasonId);
             if (!matches.Success)
