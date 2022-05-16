@@ -1,5 +1,6 @@
 ﻿using FootballServerCapstone.API.Models;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using FootballServerCapstone.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FootballServerCapstone.API.Controllers
@@ -17,6 +18,28 @@ namespace FootballServerCapstone.API.Controllers
             _playerRepository = playerRepository;
             /*_historyRepository = historyRepository;
             _loanRepository = loanRepository;*/
+        }
+        [HttpPost]
+        public IActionResult AddPlayer(PlayerModel player)
+        {
+            Player toAdd = new Player();
+            toAdd.FirstName = player.FirstName;
+            toAdd.LastName = player.LastName;
+            toAdd.DateOfBirth = player.DateOfBirth;
+            toAdd.PositionId = player.PositionId;
+            toAdd.ClubId = player.ClubId;
+            toAdd.IsActive = player.IsActive;
+            toAdd.IsOnLoan = player.IsOnLoan;
+
+            var result = _playerRepository.Insert(toAdd);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+            else
+            {
+                return CreatedAtRoute(nameof(GetPlayer), new { id = result.Data.PlayerId }, result.Data);
+            }
         }
         [HttpGet]
         public IActionResult GetPlayers()
