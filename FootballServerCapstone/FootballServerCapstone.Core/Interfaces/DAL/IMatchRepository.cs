@@ -14,6 +14,6 @@ namespace FootballServerCapstone.Core.Interfaces.DAL
         public Response Update(Match match);
 
         public Response<Match> GetById(int matchId);
-        public Response<List<Match>> GetByClub(int clubId);
+        public Response<List<Match>> GetByClub(int clubId, int seasonId);
     }
 }
