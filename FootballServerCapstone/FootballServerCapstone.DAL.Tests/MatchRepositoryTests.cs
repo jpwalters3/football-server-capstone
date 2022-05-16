@@ -62,13 +62,13 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void TestGetByClub()
         {
-            Assert.AreEqual(22, db.GetByClub(1).Data.Count);
+            Assert.AreEqual(7, db.GetByClub(1, 2).Data.Count);
         }
         [Test]
         public void TestInsert()
         {
             db.Insert(NewMatch);
-            Assert.AreEqual(23, db.GetByClub(1).Data.Count);
+            Assert.AreEqual(4, db.GetByClub(1, 1).Data.Count);
             Assert.AreEqual(NewMatch.AwayScore, db.GetById(51).Data.AwayScore);
         }
         [Test]
@@ -80,7 +80,8 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void TestDelete()
         {
-            Assert.IsTrue(true);
+            db.Delete(1);
+            Assert.AreEqual(0, db.GetByClub(1, 5).Data.Count);
         }
     }
 }
