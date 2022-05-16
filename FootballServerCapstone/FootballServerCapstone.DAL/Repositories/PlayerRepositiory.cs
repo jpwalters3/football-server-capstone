@@ -150,8 +150,9 @@ namespace FootballServerCapstone.DAL.Repositories
                     if (result.Data.Count == 0)
                     {
                         result.Message.Add($"No history found for player");
+                        result.Data.Add(new History { HistoryEntry = "No history found for player" });
                     }
-                    else { result.Success = true; }
+                    result.Success = true;
                 }
             }
             catch (Exception ex)
