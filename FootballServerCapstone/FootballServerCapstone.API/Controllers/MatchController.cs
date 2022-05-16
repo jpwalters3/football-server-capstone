@@ -48,10 +48,10 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
         [HttpGet]
-        [Route("api/[controller]/club/{id}", Name = "GetMatchesByClub")]
-        public IActionResult GetMatchesByClub(int id)
+        [Route("api/[controller]/club/{clubId}/{seasonId}", Name = "GetMatchesByClubId")]
+        public IActionResult GetMatchesByClub(int clubId, int seasonId)
         {
-            var matches = _matchRepository.GetByClub(id);
+            var matches = _matchRepository.GetByClub(clubId, seasonId);
             if (!matches.Success)
             {
                 return BadRequest(matches.Message);
