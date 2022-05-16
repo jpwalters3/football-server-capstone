@@ -120,7 +120,10 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Match.Where(m => m.SeasonId == seasonId).ToList();
+                    result.Data = db.Match.Where(m => m.SeasonId == seasonId)
+                        .Include(h => h.HomeClub)
+                        .Include(c => c.VisitingClub)
+                        .ToList();
 
                     if (result.Data.Count == 0)
                     {

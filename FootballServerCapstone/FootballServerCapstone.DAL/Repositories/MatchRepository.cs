@@ -45,8 +45,31 @@ namespace FootballServerCapstone.DAL.Repositories
             }
             return result;
         }
+        public Response<List<Match>> GetAll()
+        {
+            Response<List<Match>> result = new Response<List<Match>>();
+            result.Message = new List<string>();
+            try
+            {
+                using (var db = DbFac.GetDbContext())
+                {
+                    result.Data = db.Match.ToList();
+                }
+            }
 
-        public Response<List<Match>> GetByClub(int clubId)
+
+            catch(Exception ex)
+            {
+                result.Message.Add(ex.Message);
+                result.Success=false;
+                return result;
+            }
+
+            result.Success = true;
+            return result;
+        }
+
+        public Response<List<Match>> GetByClub(int clubId, int seasonId)
         {
             Response<List<Match>> result = new Response<List<Match>>();
             result.Message = new List<string>();
@@ -55,7 +78,7 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Match.Where(m => (m.HomeClubId == clubId) || (m.VisitingClubId == clubId)).ToList();
+                    result.Data = db.Match.Where(m => ((m.HomeClubId == clubId) || (m.VisitingClubId == clubId)) && m.SeasonId == seasonId).ToList();
 
                     if (result.Data.Count == 0)
                     {
