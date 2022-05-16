@@ -95,11 +95,11 @@ insert into Player (ClubId, PositionId, FirstName, LastName, DateOfBirth, IsActi
 insert into Player (ClubId, PositionId, FirstName, LastName, DateOfBirth, IsActive, IsOnLoan) values (4, 2, 'Adamo', 'Dondon', '2017-05-19', 1, 0);
 insert into Player (ClubId, PositionId, FirstName, LastName, DateOfBirth, IsActive, IsOnLoan) values (1, 1, 'Loella', 'Conquer', '2071-10-26', 1, 0);
 insert into Player (ClubId, PositionId, FirstName, LastName, DateOfBirth, IsActive, IsOnLoan) values (3, 1, 'Roch', 'Rizzello', '2045-07-28', 1, 0);
-insert into Season ([Year]) values ('2017-2018');
-insert into Season ([Year]) values ('2018-2019');
-insert into Season ([Year]) values ('2019-2020');
-insert into Season ([Year]) values ('2020-2021');
-insert into Season ([Year]) values ('2021-2022');
+insert into Season ([Year], IsActive) values ('2017-2018', 0);
+insert into Season ([Year], IsActive) values ('2018-2019', 0);
+insert into Season ([Year], IsActive) values ('2019-2020', 0);
+insert into Season ([Year], IsActive) values ('2020-2021', 0);
+insert into Season ([Year], IsActive) values ('2021-2022', 1);
 insert into Match (HomeClubId, VisitingClubId, SeasonId, NumberOfAttendees, HomeScore, AwayScore, MatchDate) values (1, 2, 5, 34572, 3, 7, '2018-01-01');
 insert into Match (HomeClubId, VisitingClubId, SeasonId, NumberOfAttendees, HomeScore, AwayScore, MatchDate) values (1, 3, 1, 36285, 17, 20, '2018-01-01');
 insert into Match (HomeClubId, VisitingClubId, SeasonId, NumberOfAttendees, HomeScore, AwayScore, MatchDate) values (3, 5, 2, null, null, null, '2020-01-01');
