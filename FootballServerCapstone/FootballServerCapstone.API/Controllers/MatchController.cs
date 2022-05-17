@@ -66,7 +66,7 @@ namespace FootballServerCapstone.API.Controllers
         public IActionResult GetMatchesByClub(int id)
 
         {
-            var matches = _matchRepository.GetByClub(clubId, seasonId);
+            var matches = _matchRepository.GetByClub(id, 4);
             if (!matches.Success)
             {
                 return BadRequest(matches.Message);
