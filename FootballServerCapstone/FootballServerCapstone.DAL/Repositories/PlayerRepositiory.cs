@@ -22,6 +22,18 @@ namespace FootballServerCapstone.DAL.Repositories
                 {
                     try
                     {
+                        foreach (Loan l in db.Loan.Where(l => l.PlayerId == playerId))
+                        {
+                            db.Loan.Remove(l);
+                        }
+                        foreach (Performance p in db.Performance.Where(p => p.PlayerId == playerId).ToList())
+                        {
+                            db.Performance.Remove(p);
+                        }
+                        foreach (History h in db.History.Where(h => h.PlayerId == playerId).ToList())
+                        {
+                            db.History.Remove(h);
+                        }
                         db.Player.Remove(db.Player.Find(playerId));
                         db.SaveChanges();
 
@@ -138,8 +150,9 @@ namespace FootballServerCapstone.DAL.Repositories
                     if (result.Data.Count == 0)
                     {
                         result.Message.Add($"No history found for player");
+                        result.Data.Add(new History { HistoryEntry = "No history found for player" });
                     }
-                    else { result.Success = true; }
+                    result.Success = true;
                 }
             }
             catch (Exception ex)

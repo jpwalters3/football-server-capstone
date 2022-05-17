@@ -26,12 +26,14 @@ namespace FootballServerCapstone.DAL.Tests
         {
             Season newSeason = new Season
             {
-                Year = "2012-2013"
+                Year = "2012-2013",
+                IsActive = false
             };
             Season expected = new Season
             {
                 SeasonId = 6,
-                Year = "2012-2013"
+                Year = "2012-2013",
+                IsActive = false
             };
 
             Response<Season> actual = db.Insert(newSeason);
@@ -59,7 +61,7 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void Update_GivenSeason_UpdateSeaon()
         {
-            Season updatedSeason = new Season { SeasonId = 1, Year = "2019-2020" };
+            Season updatedSeason = new Season { SeasonId = 1, Year = "2019-2020", IsActive = false };
 
             Response updateResult = db.Update(updatedSeason);
             Assert.True(updateResult.Success);
@@ -71,7 +73,7 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void Update_GivenSeasonWithNonexistentId_DoesNotUpdate()
         {
-            Season updatedSeason = new Season { SeasonId = 6, Year = "2019-2020" };
+            Season updatedSeason = new Season { SeasonId = 6, Year = "2019-2020", IsActive = false };
 
             Response updateResult = db.Update(updatedSeason);
 
@@ -81,7 +83,7 @@ namespace FootballServerCapstone.DAL.Tests
         [Test]
         public void GetById_GivenSeasonId_ReturnSeason()
         {
-            Season expected = new Season { SeasonId = 1, Year = "2017-2018" };
+            Season expected = new Season { SeasonId = 1, Year = "2017-2018", IsActive = false };
             Response<Season> actual = db.GetById(1);
 
             Assert.True(actual.Success);
@@ -105,6 +107,7 @@ namespace FootballServerCapstone.DAL.Tests
 
             Assert.True(actual.Success);
             Assert.AreEqual(actual.Data.Count, expectedMatches);
+            Assert.AreEqual(actual.Data[0].HomeClub.Name, "Bush dog");
         }
         [Test]
         public void GetMatches_GivenNonexistentSeasonId_ReturnMatches()

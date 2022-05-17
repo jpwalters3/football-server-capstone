@@ -79,5 +79,18 @@ namespace FootballServerCapstone.DAL.Tests
             db.Insert(newPlayer);
             Assert.AreEqual("Fernando", db.GetById(31).Data.FirstName);
         }
+        [Test]
+        public void TestUpdate()
+        {
+            starter.FirstName = "Philip";
+            db.Update(starter);
+            Assert.AreEqual("Philip", db.GetById(1).Data.FirstName);
+        }
+        [Test]
+        public void TestDelete()
+        {
+            db.Delete(1);
+            Assert.AreEqual(29, db.GetAll().Data.Count);
+        }
     }
 }
