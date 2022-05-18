@@ -39,12 +39,12 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddTransient<IClubRepository>(r => new ClubRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IReportRepository>(r => new ReportRepository(new DbFactory(new ConfigProvider().Config)));
-//builder.Services.AddTransient<ISeasonRepository SeasonRepository>();
+builder.Services.AddTransient<ISeasonRepository>(r => new SeasonRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IPlayerRepository, PlayerRepository>(r => new PlayerRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IHistoryRepository, HistoryRepository>(r => new HistoryRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<ILoanRepository, LoanRepository>(r => new LoanRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IMatchRepository>(r => new MatchRepository(new DbFactory(new ConfigProvider().Config)));
-//builder.Services.AddTransient<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddTransient<IPerformanceRepository, PerformanceRepository>(r => new PerformanceRepository(new DbFactory(new ConfigProvider().Config)));
 
 var app = builder.Build();
 
