@@ -1,3 +1,4 @@
+
 CREATE PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
 AS
 BEGIN

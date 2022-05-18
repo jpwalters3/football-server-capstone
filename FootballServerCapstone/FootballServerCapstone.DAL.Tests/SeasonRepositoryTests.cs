@@ -22,6 +22,12 @@ namespace FootballServerCapstone.DAL.Tests
         }
 
         [Test]
+        public void TestGetAll()
+        {
+            Assert.AreEqual(5, db.GetAll().Data.Count);
+        }
+
+        [Test]
         public void Insert_GivenSeason_InsertSeason()
         {
             Season newSeason = new Season
