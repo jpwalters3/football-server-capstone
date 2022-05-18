@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.API.Models;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -113,7 +114,7 @@ namespace FootballServerCapstone.API.Controllers
                 }
             }
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddMatch(ViewMatchModel match)
         {
             if (ModelState.IsValid)
@@ -144,7 +145,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateMatch(ViewMatchModel match)
         {
             if (ModelState.IsValid && match.MatchId > 0)
@@ -192,7 +193,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpDelete("{matchId}")]
+        [HttpDelete("{matchId}"), Authorize]
         public IActionResult DeleteMatch(int matchId)
         {
             var findResult = _matchRepository.GetById(matchId);
