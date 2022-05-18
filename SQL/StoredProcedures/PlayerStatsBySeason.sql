@@ -1,4 +1,4 @@
-ALTER PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
+CREATE PROCEDURE [PlayerStatsBySeason](@seasonId as int, @playerId as int)
 AS
 BEGIN
 SELECT m.SeasonId, pl.FirstName + ' ' + pl.LastName [Name],
@@ -14,3 +14,5 @@ GROUP by m.SeasonId, pl.FirstName, pl.LastName, pl.PlayerId
 having SeasonId = @seasonId
 AND pl.PlayerId = @playerId
 END
+
+EXEC PlayerStatsBySeason @seasonId = 2, @playerId = 6;
