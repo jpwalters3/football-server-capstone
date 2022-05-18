@@ -237,7 +237,7 @@ namespace FootballServerCapstone.API.Controllers
             }
             else
             {
-                return Ok(deleteResult.Message);
+                return Ok();
             }
         }
     }

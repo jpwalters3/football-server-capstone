@@ -215,7 +215,7 @@ namespace FootballServerCapstone.API.Controllers
             }
             else
             {
-                return Ok(findResult.Data);
+                return Ok();
             }
         }
 

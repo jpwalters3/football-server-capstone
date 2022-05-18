@@ -10,7 +10,7 @@ namespace FootballServerCapstone.API.Models
                 {
                     DateTime date = Convert.ToDateTime(value);
 
-                    if (date >= DateTime.Parse("1982-05-10") && date <= DateTime.Parse("2002-05-10"))
+                    if (date <= DateTime.Parse("1982-05-10") && date >= DateTime.Parse("2002-05-10"))
                     {
                         return new ValidationResult("Date must be between 5/10/82 and 5/10/02");
                     }
