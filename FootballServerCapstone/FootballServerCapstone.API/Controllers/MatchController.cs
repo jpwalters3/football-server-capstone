@@ -30,7 +30,7 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
         [HttpGet]
-        [Route("api/[controller]/{id}", Name = "GetMatch")]
+        [Route("{id}", Name = "GetMatch")]
         public IActionResult GetMatch(int id)
         {
             var match = _matchRepository.GetById(id);
