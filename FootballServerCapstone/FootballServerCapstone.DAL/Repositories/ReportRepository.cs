@@ -101,7 +101,9 @@ namespace FootballServerCapstone.DAL.Repositories
                     }
 
                     result.Data[i].Points = result.Data[i].Wins * 3 + result.Data[i].Draws;
+                    
                 }
+                result.Data = result.Data.OrderByDescending(x => x.Points).ToList();
             }
 
             result.Success = true;

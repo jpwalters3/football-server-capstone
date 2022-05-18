@@ -11,5 +11,7 @@
         public bool IsOnLoan { get; set; }
         public int ClubId { get; set; }
         public int PositionId { get; set; }
+        public string ClubName { get; set; }
+        public string PositionName { get; set; }
     }
 }

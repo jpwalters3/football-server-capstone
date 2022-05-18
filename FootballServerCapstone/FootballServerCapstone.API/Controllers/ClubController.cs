@@ -29,7 +29,14 @@ namespace FootballServerCapstone.API.Controllers
                 {
                     return NotFound(clubs.Message);
                 }
-                return Ok(clubs.Data);
+                return Ok(
+                    clubs.Data.Select(c => new ClubModel()
+                    {
+                        ClubId = c.ClubId,
+                        Name = c.Name,
+                        FoundingDate = c.FoundingDate,
+                        City = c.City,
+                    }));
             }
             else
             {
@@ -157,7 +164,9 @@ namespace FootballServerCapstone.API.Controllers
                             IsActive = player.IsActive,
                             IsOnLoan = player.IsOnLoan,
                             ClubId = player.ClubId,
-                            PositionId = player.PositionId
+                            PositionId = player.PositionId,
+                            ClubName = player.Club.Name,
+                            PositionName = player.Position.PositionName
                         }));
             }
 

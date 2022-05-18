@@ -21,25 +21,32 @@ namespace FootballServerCapstone.API.Controllers
             _loanRepository = loanRepository;*/
         }
         [HttpPost]
-        public IActionResult AddPlayer(PlayerModel player)
+        public IActionResult AddPlayer(ViewPlayerModel player)
         {
-            Player toAdd = new Player();
-            toAdd.FirstName = player.FirstName;
-            toAdd.LastName = player.LastName;
-            toAdd.DateOfBirth = player.DateOfBirth;
-            toAdd.PositionId = player.PositionId;
-            toAdd.ClubId = player.ClubId;
-            toAdd.IsActive = player.IsActive;
-            toAdd.IsOnLoan = player.IsOnLoan;
-
-            var result = _playerRepository.Insert(toAdd);
-            if (!result.Success)
+            if (ModelState.IsValid)
             {
-                return BadRequest(result.Message);
+                Player toAdd = new Player();
+                toAdd.FirstName = player.FirstName;
+                toAdd.LastName = player.LastName;
+                toAdd.DateOfBirth = player.DateOfBirth;
+                toAdd.PositionId = player.PositionId;
+                toAdd.ClubId = player.ClubId;
+                toAdd.IsActive = player.IsActive;
+                toAdd.IsOnLoan = player.IsOnLoan;
+
+                var result = _playerRepository.Insert(toAdd);
+                if (!result.Success)
+                {
+                    return BadRequest(result.Message);
+                }
+                else
+                {
+                    return CreatedAtRoute(nameof(GetPlayer), new { id = result.Data.PlayerId }, result.Data);
+                }
             }
             else
             {
-                return CreatedAtRoute(nameof(GetPlayer), new { id = result.Data.PlayerId }, result.Data);
+                return BadRequest(ModelState);
             }
         }
         [HttpGet]
@@ -53,7 +60,21 @@ namespace FootballServerCapstone.API.Controllers
                 {
                     return NotFound(players.Message);
                 }
-                return Ok(players.Data);
+                return Ok(
+                    players.Data.Select(
+                        players => new PlayerModel()
+                        {
+                            PlayerId = players.PlayerId,
+                            FirstName = players.FirstName,
+                            LastName = players.LastName,
+                            DateOfBirth = players.DateOfBirth,
+                            IsActive = players.IsActive,
+                            IsOnLoan = players.IsOnLoan,
+                            ClubId = players.ClubId,
+                            PositionId = players.PositionId,
+                            ClubName = players.Club.Name,
+                            PositionName = players.Position.PositionName
+                        }));
             }
             else
             {
@@ -84,7 +105,9 @@ namespace FootballServerCapstone.API.Controllers
                     IsActive = player.Data.IsActive,
                     IsOnLoan = player.Data.IsOnLoan,
                     ClubId = player.Data.ClubId,
-                    PositionId = player.Data.PositionId
+                    PositionId = player.Data.PositionId,
+                    ClubName = player.Data.Club.Name,
+                    PositionName = player.Data.Position.PositionName
                 });
             }
 

@@ -10,5 +10,8 @@
         public int HomeClubId { get; set; }
         public int VisitingClubId { get; set; }
         public int SeasonId { get; set; }
+        public string HomeClubName { get; set; }
+        public string VisitingClubName { get; set; }
+        public string SeasonYear { get; set; }
     }
 }
