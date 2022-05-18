@@ -130,7 +130,7 @@ namespace FootballServerCapstone.DAL.Repositories
                         result.Message.Add($"No matches found");
                     }
                     result.Success = true;
-                }
+                } 
             }
             catch (Exception ex)
             {

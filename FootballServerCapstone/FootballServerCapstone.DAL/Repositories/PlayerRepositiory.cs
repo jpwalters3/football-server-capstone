@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.Core;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootballServerCapstone.DAL.Repositories
 {
@@ -63,7 +64,9 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Player.ToList();
+                    result.Data = db.Player
+                                    .Include(c => c.Club)
+                                    .Include(po => po.Position).ToList();
 
                     if (result.Data.Count == 0)
                     {
@@ -90,6 +93,8 @@ namespace FootballServerCapstone.DAL.Repositories
                 using (var db = DbFac.GetDbContext())
                 {
                     result.Data = db.Player
+                                    .Include(c => c.Club)
+                                    .Include(po => po.Position)
                                     .Where(p => p.ClubId == clubId)
                                     .ToList();
 
@@ -117,7 +122,8 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Player.Find(playerId);
+                    result.Data = db.Player.Include(c => c.Club)
+                                    .Include(po => po.Position).Where(p => p.PlayerId == playerId).FirstOrDefault();
 
                     if (result.Data == null)
                     {

@@ -9,7 +9,7 @@ namespace FootballServerCapstone.Core.Entities
 {
     public class Season
     {
-        [Key]
+        [Key] 
         public int SeasonId { get; set; }
 
         public string Year { get; set; }

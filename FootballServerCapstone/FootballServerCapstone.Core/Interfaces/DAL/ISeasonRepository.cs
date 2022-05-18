@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FootballServerCapstone.Core.Entities;
 
-namespace FootballServerCapstone.Core.Interfaces.DAL
+namespace FootballServerCapstone.Core.Interfaces.DAL 
 {
     public interface ISeasonRepository
     {

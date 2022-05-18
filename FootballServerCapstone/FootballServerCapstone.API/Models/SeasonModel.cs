@@ -4,5 +4,7 @@
     {
         public int SeasonId { get; set; }
         public string Year { get; set; }
+        public bool IsActive { get; set; }
     }
 }
+ 

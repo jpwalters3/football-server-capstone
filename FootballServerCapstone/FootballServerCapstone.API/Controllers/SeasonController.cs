@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FootballServerCapstone.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class SeasonController : ControllerBase
     {
         private readonly ISeasonRepository _seasonRepository;
