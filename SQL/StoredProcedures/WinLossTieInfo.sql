@@ -1,4 +1,4 @@
-CREATE PROCEDURE [WinLossTieInfo](@clubName as nvarchar(50))
+ALTER PROCEDURE [WinLossTieInfo](@clubName as nvarchar(50))
 AS
 BEGIN
 SELECT Wins, Losses, Ties from
@@ -25,3 +25,5 @@ join Club c on m.VisitingClubId = c.ClubId) VST on HST.MatchId = VST.MatchId
 where (HomeClubName = @clubName and HomeScore = AwayScore) 
 or (VisitingClubName = @clubName and AwayScore = HomeScore)) as TT) TT
 END
+
+EXEC WinLossTieInfo @clubName = 'Bush dog'

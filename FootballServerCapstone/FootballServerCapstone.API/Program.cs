@@ -44,7 +44,7 @@ builder.Services.AddTransient<IPlayerRepository, PlayerRepository>(r => new Play
 builder.Services.AddTransient<IHistoryRepository, HistoryRepository>(r => new HistoryRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<ILoanRepository, LoanRepository>(r => new LoanRepository(new DbFactory(new ConfigProvider().Config)));
 builder.Services.AddTransient<IMatchRepository>(r => new MatchRepository(new DbFactory(new ConfigProvider().Config)));
-//builder.Services.AddTransient<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddTransient<IPerformanceRepository, PerformanceRepository>(r => new PerformanceRepository(new DbFactory(new ConfigProvider().Config)));
 
 var app = builder.Build();
 
