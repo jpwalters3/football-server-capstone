@@ -26,7 +26,21 @@ namespace FootballServerCapstone.API.Controllers
             }
             else
             {
-                return Ok(result.Data);
+                return Ok(result.Data.Select(
+                    m => new MatchModel()
+                    {
+                        MatchId = m.MatchId,
+                        MatchDate = m.MatchDate,
+                        NumberOfAttendees = m.NumberOfAttendees,
+                        HomeScore = m.HomeScore,
+                        AwayScore = m.AwayScore,
+                        HomeClubId = m.HomeClubId,
+                        VisitingClubId = m.VisitingClubId,
+                        SeasonId = m.SeasonId,
+                        HomeClubName =m.HomeClub.Name,
+                        VisitingClubName = m.VisitingClub.Name,
+                        SeasonYear = m.Season.Year
+                    }));
             }
         }
         [HttpGet]
@@ -56,6 +70,9 @@ namespace FootballServerCapstone.API.Controllers
                         HomeClubId = match.Data.HomeClubId,
                         VisitingClubId = match.Data.VisitingClubId,
                         SeasonId = match.Data.SeasonId,
+                        HomeClubName = match.Data.HomeClub.Name,
+                        VisitingClubName = match.Data.VisitingClub.Name,
+                        SeasonYear = match.Data.Season.Year
                     });
                 }
             }
@@ -89,6 +106,9 @@ namespace FootballServerCapstone.API.Controllers
                         HomeClubId = m.HomeClubId,
                         VisitingClubId = m.VisitingClubId,
                         SeasonId = m.SeasonId,
+                        HomeClubName = m.HomeClub.Name,
+                        VisitingClubName = m.VisitingClub.Name,
+                        SeasonYear = m.Season.Year
                     }));
                 }
             }

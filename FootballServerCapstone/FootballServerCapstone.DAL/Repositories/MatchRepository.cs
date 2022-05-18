@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.Core;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootballServerCapstone.DAL.Repositories
 {
@@ -53,7 +54,10 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Match.ToList();
+                    result.Data = db.Match
+                        .Include(m => m.HomeClub)
+                        .Include(m => m.VisitingClub)
+                        .Include(m => m.Season).ToList();
                 }
             }
 
@@ -78,7 +82,11 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Match.Where(m => ((m.HomeClubId == clubId) || (m.VisitingClubId == clubId)) && m.SeasonId == seasonId).ToList();
+                    result.Data = db.Match
+                                .Include(m => m.HomeClub)
+                                .Include(m => m.VisitingClub)
+                                .Include(m => m.Season)
+                                .Where(m => ((m.HomeClubId == clubId) || (m.VisitingClubId == clubId)) && m.SeasonId == seasonId).ToList();
 
                     if (result.Data.Count == 0)
                     {
@@ -104,7 +112,10 @@ namespace FootballServerCapstone.DAL.Repositories
             {
                 using (var db = DbFac.GetDbContext())
                 {
-                    result.Data = db.Match.Find(matchId);
+                    result.Data = db.Match
+                        .Include(m => m.HomeClub)
+                        .Include(m => m.VisitingClub)
+                        .Include(m => m.Season).Where(m => m.MatchId == matchId).FirstOrDefault();
 
                     if (result.Data == null)
                     {
