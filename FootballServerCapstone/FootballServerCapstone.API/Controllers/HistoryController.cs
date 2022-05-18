@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.API.Models;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +42,7 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddHistory(HistoryModel history)
         {
             if (ModelState.IsValid)
@@ -69,7 +70,7 @@ namespace FootballServerCapstone.API.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id}"), Authorize]
         public IActionResult DeleteHistory(int id)
         {
             var findResult = _historyRepository.GetById(id);
@@ -97,7 +98,7 @@ namespace FootballServerCapstone.API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateHistory(HistoryModel history)
         {
             if (ModelState.IsValid && history.HistoryId > 0)

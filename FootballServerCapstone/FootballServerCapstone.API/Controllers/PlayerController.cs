@@ -3,6 +3,7 @@ using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
 using FootballServerCapstone.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FootballServerCapstone.API.Controllers
 {
@@ -20,7 +21,7 @@ namespace FootballServerCapstone.API.Controllers
             /*_historyRepository = historyRepository;
             _loanRepository = loanRepository;*/
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddPlayer(PlayerModel player)
         {
             Player toAdd = new Player();
@@ -144,7 +145,7 @@ namespace FootballServerCapstone.API.Controllers
             }
 
         }
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdatePlayer(ViewPlayerModel player)
         {
             if(ModelState.IsValid && player.PlayerId > 0)
@@ -189,7 +190,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpDelete("{playerId}")]
+        [HttpDelete("{playerId}"), Authorize]
         public IActionResult DeletePlayer(int playerId)
         {
             var findResult = _playerRepository.GetById(playerId);

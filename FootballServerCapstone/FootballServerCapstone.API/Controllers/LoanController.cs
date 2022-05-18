@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.API.Models;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -94,7 +95,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(loans.Message);
             }
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddLoan(ViewLoanModel loan)
         {
             if (ModelState.IsValid)
@@ -122,7 +123,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateLoan(ViewLoanModel loan)
         {
             if (ModelState.IsValid && loan.LoanId > 0)
@@ -165,7 +166,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpDelete("{loanId}")]
+        [HttpDelete("{loanId}"), Authorize]
         public IActionResult DeleteLoan(int loanId)
         {
             var findResult = _loanRepository.GetById(loanId);

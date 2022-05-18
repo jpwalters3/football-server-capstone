@@ -1,6 +1,7 @@
 ﻿using FootballServerCapstone.API.Models;
 using FootballServerCapstone.Core.Entities;
 using FootballServerCapstone.Core.Interfaces.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,7 +61,7 @@ namespace FootballServerCapstone.API.Controllers
                 });
             }    
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddClub(ViewClubModel club)
         {
             if (ModelState.IsValid)
@@ -87,7 +88,7 @@ namespace FootballServerCapstone.API.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateClub(ViewClubModel club)
         {
             if (ModelState.IsValid && club.ClubId > 0)
