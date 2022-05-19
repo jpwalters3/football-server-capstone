@@ -28,7 +28,27 @@ namespace FootballServerCapstone.API.Controllers
             {
                 if (performance.Data == null)
                 {
-                    return NotFound();
+                    Performance newEmpty = new Performance()
+                    {
+                        MatchId = matchId,
+                        PlayerId = playerId,
+                        ShotsOnTarget = 0,
+                        Shots = 0,
+                        Fouls = 0,
+                        Goals = 0,
+                        Assists = 0,
+                        Saves = 0,
+                        Passes = 0,
+                        PassesCompleted = 0,
+                        Dribbles = 0,
+                        DribblesSucceeded = 0,
+                        Tackles = 0,
+                        TacklesSucceeded = 0,
+                        CleanSheet = false,
+                        PositionId = 1
+                    };
+                    _performanceRepository.Insert(newEmpty);
+                    return Ok(newEmpty);
                 }
                 else
                 {
