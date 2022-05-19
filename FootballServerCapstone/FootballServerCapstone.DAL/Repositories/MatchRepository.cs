@@ -57,7 +57,9 @@ namespace FootballServerCapstone.DAL.Repositories
                     result.Data = db.Match
                         .Include(m => m.HomeClub)
                         .Include(m => m.VisitingClub)
-                        .Include(m => m.Season).ToList();
+                        .Include(m => m.Season)
+                        .OrderBy(m => m.MatchDate)
+                        .ToList();
                 }
             }
 
@@ -86,6 +88,7 @@ namespace FootballServerCapstone.DAL.Repositories
                                 .Include(m => m.HomeClub)
                                 .Include(m => m.VisitingClub)
                                 .Include(m => m.Season)
+                                .OrderBy(m => m.MatchDate)
                                 .Where(m => ((m.HomeClubId == clubId) || (m.VisitingClubId == clubId)) && m.SeasonId == seasonId).ToList();
 
                     if (result.Data.Count == 0)
