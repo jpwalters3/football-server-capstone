@@ -181,9 +181,9 @@ namespace FootballServerCapstone.DAL.Repositories
                         result.Data = new PlayerStatistics(
                             (int)reader["TotalShots"],
                             (int)reader["TotalShotsOnTarget"],
+                            (int)reader["TotalAssists"],
                             (int)reader["TotalFouls"],
                             (int)reader["TotalGoals"],
-                            (int)reader["TotalAssists"],
                             (int)reader["TotalSaves"],
                             (int)reader["TotalPasses"],
                             (int)reader["TotalPassesCompleted"],

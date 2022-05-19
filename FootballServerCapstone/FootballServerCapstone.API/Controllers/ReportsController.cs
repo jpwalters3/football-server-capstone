@@ -20,7 +20,7 @@ namespace FootballServerCapstone.API.Controllers
         [Route("{id:int}")]
         public IActionResult getStats(int id)
         {
-            var result = _repo.getPlayerStatistics(id, 4);
+            var result = _repo.getPlayerStatistics(id, 1);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
